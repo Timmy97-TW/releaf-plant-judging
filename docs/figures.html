@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Figures · ReLEAF plant seat</title>
+<meta name="description" content="The plant results figures grouped into six shapes, each with what it shows and what it cannot show.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4c0 9-5.5 14-12 14-1.6 0-3-.3-4-.8' stroke='%235aaa47' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/base.css?v=1">
+<link rel="stylesheet" href="assets/css/pages.css?v=1">
+</head>
+<body>
+<nav class="nav"></nav>
+
+<header class="wrap hero" style="padding-bottom:1.5rem">
+  <div class="eyebrow">02</div>
+  <h1><span class="only-en">Six shapes</span><span class="only-zh">六個形狀</span></h1>
+  <p class="lede" style="max-width:62ch">
+    <span class="only-en">Nobody remembers twenty figures. Everybody remembers six shapes. Learn the shape, and the sentence for any figure inside it is already written: what it says, and what it cannot say.</span>
+    <span class="only-zh">沒有人記得住二十張圖，但每個人都記得住六個形狀。記住形狀，裡面任何一張圖的句子就已經寫好了：它說了什麼，以及它不能說什麼。</span>
+  </p>
+  <div class="anchors" id="anchors"></div>
+</header>
+
+<main class="wrap" id="main" style="padding-bottom:4rem"></main>
+
+<footer class="foot"><div class="wrap">
+  <p><span class="only-en">Click any figure to see it large. All figures are from our own wiki.</span><span class="only-zh">點任何一張圖可放大。所有圖都來自我們自己的 wiki。</span></p>
+</div></footer>
+
+<script src="assets/js/app.js?v=1"></script>
+<script src="assets/data/figures.js?v=1"></script>
+<script>
+(function () {
+  function fig(f) {
+    return '<article class="figc">' +
+      '<img src="assets/img/fig/' + f.img + '" alt="' + RL.esc(f.t_en) + '" loading="lazy">' +
+      '<div class="figc-b">' +
+        '<div class="figc-t">' + RL.bi(f.t_en, f.t_zh) + '</div>' +
+        '<div class="figc-num">' + RL.esc(f.num) + '</div>' +
+        '<p class="figc-says"><span>' + RL.bi(f.says_en, f.says_zh) + '</span></p>' +
+        '<p class="figc-not"><span>' + RL.bi(f.not_en, f.not_zh) + '</span></p>' +
+        '<div class="src">' + RL.esc(f.src) + '</div>' +
+      '</div>' +
+    '</article>';
+  }
+
+  function cluster(c) {
+    return '<section class="cluster" id="' + c.id + '">' +
+      '<div class="cluster-head"><span class="cluster-n">' + c.n + '</span>' +
+      '<h2>' + RL.bi(c.en, c.zh) + '</h2></div>' +
+      '<p class="cluster-hook">' + RL.bi(c.hook_en, c.hook_zh) + '</p>' +
+      '<p class="lede-sm" style="max-width:66ch;margin-top:-.7rem;margin-bottom:1.3rem">' + RL.bi(c.lead_en, c.lead_zh) + '</p>' +
+      '<div class="grid g2">' + c.figs.map(fig).join('') + '</div>' +
+    '</section>';
+  }
+
+  function render() {
+    document.getElementById('main').innerHTML = CLUSTERS.map(cluster).join('');
+    document.getElementById('anchors').innerHTML = CLUSTERS.map(function (c) {
+      return '<a href="#' + c.id + '">' + RL.bi(c.en, c.zh) + '</a>';
+    }).join('');
+  }
+
+  document.addEventListener('DOMContentLoaded', render);
+  document.addEventListener('langchange', function () { if (document.getElementById('main').children.length) render(); });
+})();
+</script>
+</body>
+</html>

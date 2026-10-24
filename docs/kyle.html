@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kyle's five · ReLEAF plant seat</title>
+<meta name="description" content="The advisor memo of 24 October 2026, turned into a rehearsal: two highlights and five research questions.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4c0 9-5.5 14-12 14-1.6 0-3-.3-4-.8' stroke='%235aaa47' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/base.css?v=1">
+<link rel="stylesheet" href="assets/css/pages.css?v=1">
+</head>
+<body>
+<nav class="nav"></nav>
+
+<header class="wrap hero" style="padding-bottom:1.5rem">
+  <div class="eyebrow">05</div>
+  <h1><span class="only-en">Kyle's five</span><span class="only-zh">博後五問</span></h1>
+  <p class="lede" style="max-width:62ch">
+    <span class="only-en">On 24 October our plant advisor sent two research highlights and five questions. Treat the memo as a reviewer's opening move: anything he asks, a judge can ask, and he asks harder.</span>
+    <span class="only-zh">10 月 24 日，植物指導老師寄來兩個研究亮點與五個問題。把這份備忘錄當成審稿人的第一手棋：他問得出來的，評審也問得出來，而且他問得更狠。</span>
+  </p>
+  <div class="note note-b" style="margin-top:1.5rem;max-width:68ch">
+    <span class="only-en"><b>Read this first.</b> His memo is one tier stronger than our data at every point. He is describing a direction of travel; our wiki is describing a standard of evidence. If a judge puts the two side by side, say exactly that — do not disown the advisor and do not upgrade the data.</span>
+    <span class="only-zh"><b>先讀這段。</b>他的備忘錄在每一點上都比我們的資料強一階。他描述的是前進的方向，我們的 wiki 描述的是證據的標準。如果評審把兩份擺在一起，就照這樣講——不要撇清老師，也不要把資料升級。</span>
+  </div>
+</header>
+
+<main class="wrap" style="padding-bottom:4rem">
+  <section style="padding-top:1.5rem">
+    <div class="sec-head"><h2><span class="only-en">The two highlights</span><span class="only-zh">兩個亮點</span></h2>
+    <p><span class="only-en">What he wants us to lead with — and exactly how far each one can be taken.</span><span class="only-zh">他希望我們主打的東西——以及每一個到底能推到哪裡。</span></p></div>
+    <div id="hi"></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2><span class="only-en">The five questions</span><span class="only-zh">五個問題</span></h2>
+    <p><span class="only-en">Each one is unpacked into what he is really asking, the moves, and the gap to name out loud.</span><span class="only-zh">每一題都拆成：他真正在問什麼、怎麼答、以及要主動講出來的缺口。</span></p></div>
+    <div id="qs"></div>
+  </section>
+</main>
+
+<footer class="foot"><div class="wrap">
+  <p><span class="only-en">Twelve drill questions derived from this memo are in the Q&amp;A bank under "Kyle's memo".</span><span class="only-zh">由這份備忘錄延伸出的十二題，收在問答演練的「博後備忘錄」分類下。</span></p>
+</div></footer>
+
+<script src="assets/js/app.js?v=1"></script>
+<script src="assets/data/kyle.js?v=1"></script>
+<script>
+(function () {
+  function list(cls, items) {
+    return '<ul class="q-moves ' + cls + '">' + items.map(function (i) { return '<li>' + RL.esc(i) + '</li>'; }).join('') + '</ul>';
+  }
+
+  function hi(h) {
+    var en = RL.lang() === 'en';
+    return '<article class="card" style="margin-bottom:1rem;padding:1.5rem">' +
+      '<div class="q-head"><span class="pill pill-navy">' + h.n + '</span>' +
+      '<span class="pill pill-line">' + RL.esc(h.tag) + '</span></div>' +
+      '<h3 style="margin:.5rem 0 .6rem">' + RL.esc(en ? h.claim_en : h.claim_zh) + '</h3>' +
+      '<p class="lede-sm">' + RL.esc(en ? h.why_en : h.why_zh) + '</p>' +
+      '<div class="grid g2" style="margin-top:1rem">' +
+        '<div><h5 style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--green-ink);margin:0 0 .4rem">' +
+          RL.bi('What we have', '我們有的') + '</h5>' + list('', en ? h.have_en : h.have_zh) + '</div>' +
+        '<div><h5 style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--orange-ink);margin:0 0 .4rem">' +
+          RL.bi('What is missing', '缺的') + '</h5>' + list('', en ? h.lack_en : h.lack_zh) + '</div>' +
+      '</div>' +
+      '<div class="note note-a" style="margin-top:.5rem">' + RL.esc(en ? h.say_en : h.say_zh) + '</div>' +
+    '</article>';
+  }
+
+  function q(x) {
+    var en = RL.lang() === 'en';
+    return '<article class="q" style="margin-bottom:1rem;padding:1.5rem">' +
+      '<div class="q-head"><span class="pill pill-w">' + x.n + '</span>' +
+      '<span class="pill pill-line">' + RL.esc(x.tag) + '</span></div>' +
+      '<p class="q-text" style="font-size:1.125rem">' + RL.esc(x.q_en) + '</p>' +
+      '<p class="q-zh">' + RL.esc(x.q_zh) + '</p>' +
+      '<div class="q-body">' +
+        '<h5>' + RL.bi('What he is really asking', '他真正在問的') + '</h5>' +
+        '<p style="margin:0 0 1rem;font-size:.9375rem;color:var(--ink-2)">' + RL.esc(en ? x.asking_en : x.asking_zh) + '</p>' +
+        '<h5>' + RL.bi('The moves', '動作') + '</h5>' +
+        '<ol class="q-moves">' + (en ? x.moves_en : x.moves_zh).map(function (m) { return '<li>' + RL.esc(m) + '</li>'; }).join('') + '</ol>' +
+        '<h5>' + RL.bi('The gap to name out loud', '要主動說出來的缺口') + '</h5>' +
+        '<p class="q-trap">' + RL.esc(en ? x.gap_en : x.gap_zh) + '</p>' +
+      '</div>' +
+    '</article>';
+  }
+
+  function render() {
+    document.getElementById('hi').innerHTML = KYLE_HIGHLIGHTS.map(hi).join('');
+    document.getElementById('qs').innerHTML = KYLE_QUESTIONS.map(q).join('');
+  }
+  document.addEventListener('DOMContentLoaded', render);
+  document.addEventListener('langchange', function () { if (document.getElementById('hi').children.length) render(); });
+})();
+</script>
+</body>
+</html>

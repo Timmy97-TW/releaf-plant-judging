@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Red lines · ReLEAF plant seat</title>
+<meta name="description" content="Sentences that cost the room, the places our own pages disagree, and what exists on the bench that the wiki does not carry.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4c0 9-5.5 14-12 14-1.6 0-3-.3-4-.8' stroke='%235aaa47' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/base.css?v=1">
+<link rel="stylesheet" href="assets/css/pages.css?v=1">
+</head>
+<body>
+<nav class="nav"></nav>
+
+<header class="wrap hero" style="padding-bottom:1.5rem">
+  <div class="eyebrow eyebrow-o">07</div>
+  <h1><span class="only-en">Red lines</span><span class="only-zh">紅線</span></h1>
+  <p class="lede" style="max-width:62ch">
+    <span class="only-en">The last page to read before you walk in. Ten sentences where one word is the difference between a defensible claim and a claim a judge can take apart, the five places our own pages disagree with each other, and the bench data the wiki does not carry.</span>
+    <span class="only-zh">進場前最後讀的一頁。十句話，差一個字就從守得住的主張變成評審拆得開的主張；我們自己五處前後不一致的地方；以及 wiki 上沒有、但實驗台上有的資料。</span>
+  </p>
+  <div class="anchors">
+    <a href="#never"><span class="only-en">Never say</span><span class="only-zh">不能說</span></a>
+    <a href="#conflict"><span class="only-en">Where we disagree with ourselves</span><span class="only-zh">我們自己打架的地方</span></a>
+    <a href="#new"><span class="only-en">Since the freeze</span><span class="only-zh">凍結之後</span></a>
+  </div>
+</header>
+
+<main class="wrap" style="padding-bottom:4rem">
+  <section id="never" style="padding-top:1rem">
+    <div class="sec-head">
+      <h2><span class="only-en">Never say · say this instead</span><span class="only-zh">不能說 · 改說這個</span></h2>
+      <p><span class="only-en">Every replacement below is still a strong sentence. None of them is an apology.</span><span class="only-zh">下面每一句替代說法仍然是強的句子，沒有一句是在道歉。</span></p>
+    </div>
+    <div id="never-list"></div>
+  </section>
+
+  <section id="conflict">
+    <div class="sec-head">
+      <h2><span class="only-en">Where our own pages disagree</span><span class="only-zh">我們自己的頁面互相矛盾的地方</span></h2>
+      <p><span class="only-en">A judge who reads both pages will find these. The answer is never to pick a page — it is to explain why both sentences exist.</span><span class="only-zh">認真讀兩頁的評審會找到這些。回答的方式不是選一頁，而是解釋這兩句為什麼都存在。</span></p>
+    </div>
+    <div class="grid g2" id="conf"></div>
+  </section>
+
+  <section id="new">
+    <div class="sec-head">
+      <h2><span class="only-en">What exists since the freeze</span><span class="only-zh">凍結之後存在的東西</span></h2>
+      <p><span class="only-en">The wiki froze on 21 October. Bench work did not. If you are asked about ACC deaminase or BoPep4 on a plant, this is the ground under your feet — and the published wiki is still what we are judged on.</span><span class="only-zh">wiki 在 10 月 21 日凍結，實驗沒有。如果被問到 ACC 脫胺酶或 BoPep4 用在植物上，這些就是你腳下的地面——但我們被評的仍然是公開的 wiki。</span></p>
+    </div>
+    <div class="note note-w" style="margin-bottom:1.5rem">
+      <span class="only-en"><b>How to use this section.</b> Do not volunteer it. If a judge asks about the newest work, or quotes the advisor memo, answer from here: the runs exist, they are one plate per condition with documented contamination, and the direction is not yet consistent across platforms. Then say the wiki is the standard we publish to.</span>
+      <span class="only-zh"><b>這一段怎麼用。</b>不要主動講。只有在評審問到最新的工作、或引用老師備忘錄時，才從這裡回答：實驗是存在的、每個條件一皿、有記錄到污染、而且方向在不同平台間還不一致。然後說 wiki 是我們發表時採用的標準。</span>
+    </div>
+    <div class="grid g2" id="newd"></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2><span class="only-en">The one-line version</span><span class="only-zh">一句話版本</span></h2></div>
+    <div class="band">
+      <h3 style="font-size:1.3rem;line-height:1.45">
+        <span class="only-en">We can prove the plant is stressed. We cannot yet prove we unstressed it. Everything we say has to sit on the first half, and name the second.</span>
+        <span class="only-zh">我們能證明植物有逆境，還不能證明我們解除了逆境。我們講的每句話都要站在前半句上，並且把後半句說出來。</span>
+      </h3>
+    </div>
+  </section>
+</main>
+
+<footer class="foot"><div class="wrap">
+  <p><span class="only-en">Where this page and the wiki differ, the wiki wins. Where the advisor memo and the wiki differ, say that both are honest about different things.</span><span class="only-zh">這一頁與 wiki 不一致時以 wiki 為準。老師備忘錄與 wiki 不一致時，就說兩份各自誠實於不同的東西。</span></p>
+</div></footer>
+
+<script src="assets/js/app.js?v=1"></script>
+<script src="assets/data/content.js?v=1"></script>
+<script>
+(function () {
+  function render() {
+    var en = RL.lang() === 'en';
+
+    document.getElementById('never-list').innerHTML = NEVER_SAY.map(function (r, i) {
+      return '<div style="margin-bottom:1rem">' +
+        '<div class="swap">' +
+          '<div class="no"><h5>' + RL.bi('Never', '不能說') + ' · ' + String(i + 1).padStart(2, '0') + '</h5>' +
+            RL.esc(en ? r.no_en : r.no_zh) + '</div>' +
+          '<div class="yes"><h5>' + RL.bi('Say', '改說') + '</h5>' +
+            RL.esc(en ? r.yes_en : r.yes_zh) + '</div>' +
+        '</div>' +
+        '<div class="src" style="margin-top:.35rem">' + RL.esc(r.why_en) + '</div>' +
+      '</div>';
+    }).join('');
+
+    document.getElementById('conf').innerHTML = CONFLICTS.map(function (c) {
+      return '<div class="rl" style="border-left-color:var(--orange);background:var(--orange-wash)">' +
+        '<b style="color:var(--orange-ink)">' + RL.esc(en ? c.t_en : c.t_zh) + '</b>' +
+        '<p style="color:var(--orange-ink)">' + RL.esc(en ? c.d_en : c.d_zh) + '</p>' +
+      '</div>';
+    }).join('');
+
+    document.getElementById('newd').innerHTML = NEW_SINCE_FREEZE.map(function (n) {
+      return '<div class="card card-soft">' +
+        '<h4>' + RL.esc(en ? n.t_en : n.t_zh) + '</h4>' +
+        '<p class="lede-sm">' + RL.esc(en ? n.d_en : n.d_zh) + '</p>' +
+      '</div>';
+    }).join('');
+  }
+  document.addEventListener('DOMContentLoaded', render);
+  document.addEventListener('langchange', function () { if (document.getElementById('conf').children.length) render(); });
+})();
+</script>
+</body>
+</html>

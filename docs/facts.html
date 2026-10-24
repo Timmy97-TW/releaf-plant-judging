@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Facts · ReLEAF plant seat</title>
+<meta name="description" content="Every checkable plant fact on the frozen ReLEAF wiki, with its status and the trap beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4c0 9-5.5 14-12 14-1.6 0-3-.3-4-.8' stroke='%235aaa47' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/base.css?v=1">
+<link rel="stylesheet" href="assets/css/pages.css?v=1">
+</head>
+<body>
+<nav class="nav"></nav>
+
+<header class="wrap hero" style="padding-bottom:1.5rem">
+  <div class="eyebrow">01</div>
+  <h1><span class="only-en">Facts</span><span class="only-zh">事實庫</span></h1>
+  <p class="lede" style="max-width:60ch">
+    <span class="only-en">Every plant number our wiki publishes, each one tagged with how far it reaches. A fact marked <b>conflict</b> is one where two of our own pages disagree — know those before a judge finds them.</span>
+    <span class="only-zh">我們 wiki 上公布的每一個植物數字，都標了它能走多遠。標為<b>矛盾</b>的，是我們自己兩個頁面講法不一致的地方——這些要在評審發現之前先知道。</span>
+  </p>
+</header>
+
+<div class="bar">
+  <div class="wrap bar-in">
+    <input class="search" id="q" type="search" placeholder="Search a number, a word, a set…" aria-label="Search facts">
+    <div class="chips" id="groups"></div>
+    <div class="chips" id="stats"></div>
+    <div class="bar-count" id="count"></div>
+  </div>
+</div>
+
+<main class="wrap" id="list" style="padding-bottom:4rem"></main>
+
+<footer class="foot"><div class="wrap">
+  <p><span class="only-en">Source for every row is our own published page. Section numbers follow the wiki's own headings.</span><span class="only-zh">每一列的出處都是我們自己公開的頁面，節號依 wiki 自己的標題。</span></p>
+</div></footer>
+
+<script src="assets/js/app.js?v=1"></script>
+<script src="assets/data/facts.js?v=1"></script>
+<script>
+(function () {
+  var G = new Set(), S = new Set(), Q = '';
+
+  function chips(el, items, set, countOf) {
+    el.innerHTML = items.map(function (i) {
+      return '<button class="chip" type="button" data-v="' + i.id + '" aria-pressed="false">' +
+        RL.bi(i.en, i.zh) + '<span class="c">' + countOf(i.id) + '</span></button>';
+    }).join('');
+    el.querySelectorAll('.chip').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var v = b.dataset.v;
+        if (set.has(v)) { set.delete(v); b.setAttribute('aria-pressed', 'false'); }
+        else { set.add(v); b.setAttribute('aria-pressed', 'true'); }
+        render();
+      });
+    });
+  }
+
+  chips(document.getElementById('groups'), FACT_GROUPS, G,
+    function (id) { return FACTS.filter(function (f) { return f.g === id; }).length; });
+
+  chips(document.getElementById('stats'),
+    Object.keys(FACT_STATUS).map(function (k) { return { id: k, en: FACT_STATUS[k].en, zh: FACT_STATUS[k].zh }; }), S,
+    function (id) { return FACTS.filter(function (f) { return f.s === id; }).length; });
+
+  document.getElementById('q').addEventListener('input', function (e) { Q = e.target.value.toLowerCase(); render(); });
+
+  function hit(f) {
+    if (G.size && !G.has(f.g)) return false;
+    if (S.size && !S.has(f.s)) return false;
+    if (!Q) return true;
+    return [f.id, f.k, f.kz, f.v, f.n, f.nz, f.src, f.trap].join(' ').toLowerCase().indexOf(Q) > -1;
+  }
+
+  function row(f) {
+    var st = FACT_STATUS[f.s];
+    var grp = FACT_GROUPS.filter(function (g) { return g.id === f.g; })[0] || { en: f.g, zh: f.g };
+    return '<article class="fact">' +
+      '<div>' +
+        '<div class="fact-k">' + RL.bi(f.k, f.kz) + '</div>' +
+        '<div class="fact-v">' + RL.esc(f.v) + '</div>' +
+        '<p class="fact-n">' + RL.bi(f.n, f.nz) + '</p>' +
+        (f.trap ? '<p class="fact-trap"><span>' + RL.esc(f.trap) + '</span></p>' : '') +
+        '<div class="src">' + RL.esc(f.src) + '</div>' +
+      '</div>' +
+      '<div class="fact-meta">' +
+        '<span class="pill ' + st.cls + '">' + RL.bi(st.en, st.zh) + '</span>' +
+        '<span class="pill pill-line">' + RL.bi(grp.en, grp.zh) + '</span>' +
+        '<span class="fact-id">' + f.id + '</span>' +
+      '</div>' +
+    '</article>';
+  }
+
+  function render() {
+    var shown = FACTS.filter(hit);
+    document.getElementById('list').innerHTML = shown.length
+      ? shown.map(row).join('')
+      : '<p class="empty">Nothing matches. Clear a filter.</p>';
+    document.getElementById('count').textContent = shown.length + ' / ' + FACTS.length;
+  }
+
+  document.addEventListener('DOMContentLoaded', render);
+  document.addEventListener('langchange', render);
+})();
+</script>
+</body>
+</html>

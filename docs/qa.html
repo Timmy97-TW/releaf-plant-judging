@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Q&amp;A drill · ReLEAF plant seat</title>
+<meta name="description" content="Fact check, design check, boundary probe, depth, reasoning and hostile questions, with a 90-second drill.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4c0 9-5.5 14-12 14-1.6 0-3-.3-4-.8' stroke='%235aaa47' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/base.css?v=1">
+<link rel="stylesheet" href="assets/css/pages.css?v=1">
+</head>
+<body>
+<nav class="nav"></nav>
+
+<header class="wrap hero" style="padding-bottom:1.25rem">
+  <div class="eyebrow">04</div>
+  <h1><span class="only-en">Q&amp;A drill</span><span class="only-zh">問答演練</span></h1>
+  <p class="lede" style="max-width:62ch">
+    <span class="only-en">Every question here is one a judge could ask on the evidence we published. Each carries three or four moves, the evidence to cite, and the thing that sinks the answer. Read them as a shape to build from, never as a script to recite.</span>
+    <span class="only-zh">這裡每一題，評審都可能根據我們公布的證據問出來。每題附三到四個動作、要引用的證據、以及會害你沉船的那件事。把它們當成可以搭建的形狀，不要當成要背的稿。</span>
+  </p>
+</header>
+
+<section class="wrap" style="padding:0 20px 1.5rem">
+  <div class="drill" id="drill" hidden>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap">
+      <span class="pill pill-navy" id="d-kind"></span>
+      <span class="drill-clock" id="d-clock">1:30</span>
+    </div>
+    <p class="drill-q" id="d-q"></p>
+    <p class="q-zh" id="d-zh"></p>
+    <div class="drill-bar"><i id="d-bar"></i></div>
+    <div id="d-body" hidden></div>
+    <div class="btn-row" style="margin-top:1rem">
+      <button class="btn btn-accent" id="d-reveal" type="button"><span class="only-en">Show the moves</span><span class="only-zh">看動作</span></button>
+      <button class="btn btn-ghost" id="d-next" type="button"><span class="only-en">Next question</span><span class="only-zh">下一題</span></button>
+      <button class="btn btn-line btn-sm" id="d-stop" type="button"><span class="only-en">Leave drill</span><span class="only-zh">離開演練</span></button>
+      <span class="bar-count" id="d-n"></span>
+    </div>
+  </div>
+  <div class="btn-row" id="startrow">
+    <button class="btn btn-accent" id="d-start" type="button"><span class="only-en">Start a 90-second drill</span><span class="only-zh">開始 90 秒演練</span></button>
+    <span class="lede-sm"><span class="only-en">Uses whatever filters are set below.</span><span class="only-zh">會依照下面設定的篩選出題。</span></span>
+  </div>
+</section>
+
+<div class="bar">
+  <div class="wrap bar-in">
+    <input class="search" id="q" type="search" placeholder="Search a question…" aria-label="Search questions">
+    <div class="chips" id="kinds"></div>
+    <div class="chips" id="topics"></div>
+    <div class="bar-count" id="count"></div>
+  </div>
+</div>
+
+<main class="wrap" id="list" style="padding-bottom:4rem"></main>
+
+<footer class="foot"><div class="wrap">
+  <p><span class="only-en">Ninety seconds is the working length of a judging answer. Most answers that fail in a judging room fail by running long.</span><span class="only-zh">九十秒是評審室裡一個回答的工作長度。大部分失敗的回答不是答錯，是講太久。</span></p>
+</div></footer>
+
+<script src="assets/js/app.js?v=1"></script>
+<script src="assets/data/qa-core.js?v=1"></script>
+<script src="assets/data/qa-probe.js?v=1"></script>
+<script src="assets/data/qa-hard.js?v=1"></script>
+<script>
+(function () {
+  var QS = [].concat(QA_CORE, QA_PROBE, QA_HARD);
+
+  var KINDS = [
+    {id:'fact',    en:'Fact check',    zh:'事實查核', cls:'pill-a'},
+    {id:'design',  en:'Design check',  zh:'設計檢驗', cls:'pill-b'},
+    {id:'boundary',en:'Boundary probe',zh:'邊界探測', cls:'pill-line'},
+    {id:'deep',    en:'Depth',         zh:'深度',     cls:'pill-v'},
+    {id:'reason',  en:'Think on your feet', zh:'臨場推理', cls:'pill-o'},
+    {id:'hostile', en:'Hostile',       zh:'刁難',     cls:'pill-r'},
+    {id:'kyle',    en:"Kyle's memo",   zh:'博後備忘錄', cls:'pill-w'}
+  ];
+  var TOPICS = [
+    {id:'assay',en:'Assay',zh:'檢定'},{id:'ladder',en:'Salt ladder',zh:'鹽度梯度'},
+    {id:'treh',en:'Trehalose',zh:'海藻糖'},{id:'chpep',en:'CH peptide',zh:'正瀚胜肽'},
+    {id:'heat',en:'Heat',zh:'熱逆境'},{id:'hydro',en:'Hydroponics',zh:'水耕'},
+    {id:'soil',en:'Soil',zh:'土耕'},{id:'ours',en:'Our proteins',zh:'自製蛋白'},
+    {id:'model',en:'Model',zh:'模型'},{id:'cross',en:'Cross-territory',zh:'跨領域'},
+    {id:'people',en:'Advisors',zh:'老師'},{id:'kyle',en:'Kyle',zh:'Kyle'},
+    {id:'strategy',en:'Whole project',zh:'整體'}
+  ];
+
+  var K = new Set(), T = new Set(), Q = '';
+  var kindOf = {}; KINDS.forEach(function (k) { kindOf[k.id] = k; });
+
+  function chips(el, items, set) {
+    el.innerHTML = items.map(function (i) {
+      var n = QS.filter(function (q) { return q.kind === i.id || q.topic === i.id; }).length;
+      return '<button class="chip" type="button" data-v="' + i.id + '" aria-pressed="false">' +
+        RL.bi(i.en, i.zh) + '<span class="c">' + n + '</span></button>';
+    }).join('');
+    el.querySelectorAll('.chip').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var v = b.dataset.v;
+        if (set.has(v)) { set.delete(v); b.setAttribute('aria-pressed', 'false'); }
+        else { set.add(v); b.setAttribute('aria-pressed', 'true'); }
+        render();
+      });
+    });
+  }
+  chips(document.getElementById('kinds'), KINDS, K);
+  chips(document.getElementById('topics'), TOPICS, T);
+  document.getElementById('q').addEventListener('input', function (e) { Q = e.target.value.toLowerCase(); render(); });
+
+  function hit(q) {
+    if (K.size && !K.has(q.kind)) return false;
+    if (T.size && !T.has(q.topic)) return false;
+    if (!Q) return true;
+    return [q.id, q.q_en, q.q_zh, q.ev, q.trap].concat(q.moves).join(' ').toLowerCase().indexOf(Q) > -1;
+  }
+
+  function body(q) {
+    return '<div class="q-body">' +
+      '<h5>' + RL.bi('The moves', '動作') + '</h5>' +
+      '<ol class="q-moves">' + q.moves.map(function (m) { return '<li>' + RL.esc(m) + '</li>'; }).join('') + '</ol>' +
+      '<h5>' + RL.bi('Evidence to cite', '要引用的證據') + '</h5>' +
+      '<p class="q-ev">' + RL.esc(q.ev) + '</p>' +
+      '<h5>' + RL.bi('What sinks it', '會沉船的地方') + '</h5>' +
+      '<p class="q-trap">' + RL.esc(q.trap) + '</p>' +
+    '</div>';
+  }
+
+  function card(q) {
+    var k = kindOf[q.kind];
+    return '<article class="q" data-id="' + q.id + '">' +
+      '<div class="q-head">' +
+        '<span class="pill ' + k.cls + '">' + RL.bi(k.en, k.zh) + '</span>' +
+        '<span class="pill pill-line">' + 'L' + q.lvl + '</span>' +
+        '<span class="q-id">' + q.id + '</span>' +
+      '</div>' +
+      '<p class="q-text">' + RL.esc(q.q_en) + '</p>' +
+      '<p class="q-zh">' + RL.esc(q.q_zh) + '</p>' +
+      '<button class="q-toggle" type="button">' + RL.bi('Show the answer shape ▾', '看答案形狀 ▾') + '</button>' +
+      '<div hidden>' + body(q) + '</div>' +
+    '</article>';
+  }
+
+  function render() {
+    var shown = QS.filter(hit);
+    var el = document.getElementById('list');
+    el.innerHTML = shown.length ? shown.map(card).join('') : '<p class="empty">Nothing matches. Clear a filter.</p>';
+    document.getElementById('count').textContent = shown.length + ' / ' + QS.length;
+    el.querySelectorAll('.q-toggle').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var box = b.nextElementSibling;
+        box.hidden = !box.hidden;
+        b.innerHTML = box.hidden ? RL.bi('Show the answer shape ▾', '看答案形狀 ▾') : RL.bi('Hide ▴', '收起 ▴');
+      });
+    });
+  }
+
+  /* ── drill ── */
+  var deck = [], at = 0, t = null, left = 90;
+
+  function paint(q) {
+    var k = kindOf[q.kind];
+    document.getElementById('d-kind').innerHTML = RL.bi(k.en, k.zh) + ' · ' + q.id;
+    document.getElementById('d-q').textContent = q.q_en;
+    document.getElementById('d-zh').textContent = q.q_zh;
+    document.getElementById('d-body').innerHTML = body(q);
+    document.getElementById('d-body').hidden = true;
+    document.getElementById('d-reveal').hidden = false;
+    document.getElementById('d-n').textContent = (at + 1) + ' / ' + deck.length;
+    clock(true);
+  }
+
+  function clock(reset) {
+    if (t) { clearInterval(t); t = null; }
+    if (reset) left = 90;
+    var c = document.getElementById('d-clock'), bar = document.getElementById('d-bar');
+    function tick() {
+      var m = Math.floor(Math.abs(left) / 60), s = Math.abs(left) % 60;
+      c.textContent = (left < 0 ? '+' : '') + m + ':' + String(s).padStart(2, '0');
+      c.classList.toggle('over', left <= 0);
+      bar.classList.toggle('over', left <= 0);
+      bar.style.width = Math.max(0, Math.min(100, (90 - left) / 90 * 100)) + '%';
+      left--;
+    }
+    tick();
+    t = setInterval(tick, 1000);
+  }
+
+  function next() {
+    if (!deck.length) return;
+    at = (at + 1) % deck.length;
+    paint(deck[at]);
+  }
+
+  document.getElementById('d-start').addEventListener('click', function () {
+    var pool = QS.filter(hit);
+    if (!pool.length) return;
+    deck = RL.shuffle(pool); at = 0;
+    document.getElementById('drill').hidden = false;
+    document.getElementById('startrow').hidden = true;
+    paint(deck[0]);
+    document.getElementById('drill').scrollIntoView({ block: 'start' });
+  });
+  document.getElementById('d-next').addEventListener('click', next);
+  document.getElementById('d-reveal').addEventListener('click', function () {
+    document.getElementById('d-body').hidden = false;
+    this.hidden = true;
+    if (t) { clearInterval(t); t = null; }
+  });
+  document.getElementById('d-stop').addEventListener('click', function () {
+    if (t) { clearInterval(t); t = null; }
+    document.getElementById('drill').hidden = true;
+    document.getElementById('startrow').hidden = false;
+  });
+
+  document.addEventListener('DOMContentLoaded', render);
+  document.addEventListener('langchange', function () {
+    if (document.getElementById('list').children.length) render();
+    if (!document.getElementById('drill').hidden && deck.length) {
+      var open = !document.getElementById('d-body').hidden;
+      document.getElementById('d-body').innerHTML = body(deck[at]);
+      document.getElementById('d-body').hidden = !open;
+    }
+  });
+})();
+</script>
+</body>
+</html>
