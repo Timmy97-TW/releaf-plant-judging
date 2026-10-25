@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deep dive · Kyle&apos;s five · ReLEAF plant seat</title>
+<meta name="description" content="Kyle's five questions as a course: the science with citations, diagrams drawn here, the numbers, the one experiment that would settle each, and a self-test.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4c0 9-5.5 14-12 14-1.6 0-3-.3-4-.8' stroke='%235aaa47' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/base.css?v=2">
+<link rel="stylesheet" href="assets/css/pages.css?v=2">
+</head>
+<body>
+<nav class="nav"></nav>
+
+<header class="wrap hero" style="padding-bottom:1.25rem">
+  <div class="eyebrow">08</div>
+  <h1><span class="only-en">Deep dive</span><span class="only-zh">五問深讀</span></h1>
+  <p class="lede" style="max-width:64ch">
+    <span class="only-en">The five questions again, this time as a course instead of a script. Each one carries why it is the question that matters, the science with its citations, a diagram, the numbers, the one experiment that would settle it, and two self-tests.</span>
+    <span class="only-zh">同樣五個問題，但這次是課程，不是答題稿。每一題都包含：為什麼這才是關鍵的問題、附引用的科學內容、一張圖、相關數字、能定案的那一個實驗，以及兩道自我測驗。</span>
+  </p>
+  <div class="rule-tri"><i></i><i></i><i></i></div>
+  <div class="note note-a" style="margin-top:1.5rem;max-width:70ch">
+    <span class="only-en"><b>How to use a citation in the room.</b> Cite a paper for a mechanism or a method, never for a result of ours. A citation supports "this is how it could work" or "this is the standard way to measure it". It can never raise our own n, and a judge who hears a citation used to prop up our data will ask for our data instead.</span>
+    <span class="only-zh"><b>在評審室裡怎麼用引用。</b>引用文獻是為了機制或方法，絕對不是為了我們自己的結果。引用支撐的是「它可能這樣作用」或「這是標準的量測方式」。它永遠不能提高我們自己的重複數；評審一旦聽到你用引用來撐自家資料，他就會改問你的資料。</span>
+  </div>
+  <div class="anchors" id="jump"></div>
+</header>
+
+<main class="wrap" style="padding-bottom:2rem" id="mods"></main>
+
+<section class="wrap" style="padding-bottom:4rem">
+  <div class="sec-head">
+    <h2><span class="only-en">The reading list</span><span class="only-zh">閱讀清單</span></h2>
+    <p><span class="only-en">Every paper behind the five answers, with what each one is for. Where a PubMed identifier exists the title links to it.</span><span class="only-zh">五個答案背後的每一篇文獻，附上它各自的用途。有 PubMed 編號的，標題即為連結。</span></p>
+  </div>
+  <div id="lit"></div>
+</section>
+
+<footer class="foot"><div class="wrap">
+  <p><span class="only-en">Diagrams on this page were drawn for it. Every number printed on a figure is either from our own bench or from the paper named on the figure. Reasoning is marked as reasoning throughout.</span><span class="only-zh">本頁圖表為此頁繪製。圖上每一個數字，來源都是我們自己的實驗或圖上標明的那篇文獻。推理的部分全頁都會標明是推理。</span></p>
+</div></footer>
+
+<script src="assets/js/app.js?v=2"></script>
+<script src="assets/data/deep.js?v=2"></script>
+<script src="assets/data/figs.js?v=3"></script>
+<script src="assets/data/lit.js?v=2"></script>
+<script>
+(function () {
+  function jump() {
+    document.getElementById('jump').innerHTML = DEEP.map(function (d) {
+      return '<a href="#' + d.n + '">' + d.n + ' · ' + RL.bi(d.tag_en, d.tag_zh) + '</a>';
+    }).join('');
+  }
+
+  function mod(d) {
+    var en = RL.lang() === 'en';
+    var h = '<section id="' + d.n + '" style="padding-top:1.5rem">';
+
+    h += '<article class="q" style="padding:1.5rem">' +
+      '<div class="q-head"><span class="pill pill-w">' + d.n + '</span>' +
+        '<span class="pill pill-line">' + RL.bi(d.tag_en, d.tag_zh) + '</span></div>' +
+      '<p class="q-text" style="font-size:1.125rem">' + RL.esc(d.q_en) + '</p>' +
+      '<p class="q-zh">' + RL.esc(d.q_zh) + '</p>' +
+      '<div class="q-body">' +
+        '<h5>' + RL.bi('Why this is the question that matters', '為什麼這才是關鍵的問題') + '</h5>' +
+        '<p style="margin:0;font-size:.9375rem;color:var(--ink-2)">' + RL.esc(en ? d.why_en : d.why_zh) + '</p>' +
+      '</div>' +
+    '</article>';
+
+    if (d.fig && FIGS[d.fig]) {
+      h += '<div style="margin-top:1rem"><div class="figsvg">' + FIGS[d.fig] + '</div>' +
+           '<p class="figcap">' + RL.esc(en ? d.figcap_en : d.figcap_zh) + '</p></div>';
+    }
+    if (d.fig2 && FIGS[d.fig2]) {
+      h += '<div style="margin-top:1.25rem"><div class="figsvg">' + FIGS[d.fig2] + '</div>' +
+           '<p class="figcap">' + RL.esc(en ? d.fig2cap_en : d.fig2cap_zh) + '</p></div>';
+    }
+
+    h += '<div class="grid g2" style="margin-top:1.25rem;align-items:start">';
+    h += '<div class="card" style="padding:1.35rem">' +
+      '<h3 style="font-size:1.0625rem;margin-bottom:.8rem">' + RL.bi('The science', '科學內容') + '</h3>' +
+      d.science.map(function (s) {
+        return '<div class="sci"><h4>' + RL.bi(s.h_en, s.h_zh) + '</h4>' +
+          '<p>' + RL.esc(en ? s.p_en : s.p_zh) + '</p>' + RL.cites(s.cite) + '</div>';
+      }).join('') + '</div>';
+
+    h += '<div>' +
+      '<article class="card" style="padding:1.35rem;margin-bottom:1rem">' +
+        '<h3 style="font-size:1.0625rem;margin-bottom:.6rem">' + RL.bi('The numbers', '數字') + '</h3>' +
+        '<div class="tb"><table><tbody>' + d.numbers.map(function (r) {
+          return '<tr><td>' + RL.esc(r[0]) + '</td><td>' + RL.esc(r[1]) + '</td></tr>';
+        }).join('') + '</tbody></table></div>' +
+      '</article>' +
+      '<article class="card" style="padding:1.35rem">' +
+        '<h3 style="font-size:1.0625rem;margin-bottom:.5rem">' + RL.bi('The one experiment', '那一個實驗') + '</h3>' +
+        '<p style="font-size:.9375rem;color:var(--ink-2)">' + RL.esc(en ? d.design.aim_en : d.design.aim_zh) + '</p>' +
+        '<h5 style="margin:.8rem 0 .4rem;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)">' +
+          RL.bi('Arms', '組別') + '</h5>' +
+        '<ul class="armlist">' + d.design.arms.map(function (a) { return '<li>' + RL.esc(a) + '</li>'; }).join('') + '</ul>' +
+        '<p class="statbox">' + RL.esc(en ? d.design.spec_en : d.design.spec_zh) + '</p>' +
+        '<div class="note note-a">' + RL.esc(en ? d.design.call_en : d.design.call_zh) + '</div>' +
+      '</article>' +
+    '</div>';
+    h += '</div>';
+
+    h += '<div style="margin-top:1.25rem">' +
+      '<h3 style="font-size:1.0625rem;margin-bottom:.7rem">' + RL.bi('Test yourself', '自我測驗') + '</h3>' +
+      d.check.map(function (c, i) {
+        var id = d.n + '-c' + i;
+        return '<div class="chk">' +
+          '<p class="cq">' + RL.esc(c.q_en) + '</p>' +
+          '<p class="cz">' + RL.esc(c.q_zh) + '</p>' +
+          '<button class="q-toggle" type="button" data-t="' + id + '">' + RL.bi('Show the answer ▾', '看答案 ▾') + '</button>' +
+          '<p class="ca" id="' + id + '" hidden>' + RL.esc(en ? c.a_en : c.a_zh) + '</p>' +
+        '</div>';
+      }).join('') +
+    '</div>';
+
+    h += '<div style="margin-top:1rem"><h5 style="margin:0 0 .4rem;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)">' +
+      RL.bi('Everything cited for this question', '這一題引用的全部文獻') + '</h5>' + RL.cites(d.lit) + '</div>';
+
+    return h + '</section>';
+  }
+
+  function lit() {
+    var en = RL.lang() === 'en';
+    var keys = Object.keys(LIT);
+    document.getElementById('lit').innerHTML = keys.map(function (k) {
+      var r = LIT[k];
+      var title = r.pmid
+        ? '<a href="https://pubmed.ncbi.nlm.nih.gov/' + r.pmid + '/" target="_blank" rel="noopener">' + RL.esc(r.t) + '</a>'
+        : RL.esc(r.t);
+      return '<div class="litrow">' +
+        '<div class="lt">' + title + '</div>' +
+        '<p class="lm">' + RL.esc(r.a) + ' · ' + r.y + ' · ' + RL.esc(r.j) + (r.pmid ? ' · PMID ' + r.pmid : '') + '</p>' +
+        '<p class="lu">' + RL.esc(r.use) + '</p>' +
+      '</div>';
+    }).join('');
+  }
+
+  function wire() {
+    document.querySelectorAll('.chk .q-toggle').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var el = document.getElementById(b.dataset.t);
+        el.hidden = !el.hidden;
+        b.innerHTML = el.hidden ? RL.bi('Show the answer ▾', '看答案 ▾') : RL.bi('Hide ▴', '收起 ▴');
+      });
+    });
+  }
+
+  function render() {
+    jump();
+    document.getElementById('mods').innerHTML = DEEP.map(mod).join('');
+    lit();
+    wire();
+  }
+  document.addEventListener('DOMContentLoaded', render);
+  document.addEventListener('langchange', function () {
+    if (document.getElementById('mods').children.length) render();
+  });
+})();
+</script>
+</body>
+</html>

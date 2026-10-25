@@ -149,3 +149,73 @@
 .mono { font-family: var(--font-mono); }
 .ok { color: var(--green-ink); }
 .bad { color: var(--red); }
+
+/* ── Boundary standard: the extra blocks a rigorous answer carries ── */
+.claimbox { border-left: 3px solid var(--green); background: var(--green-wash); color: #255019;
+  border-radius: 0 var(--r-sm) var(--r-sm) 0; padding: .7rem .9rem; font-size: .9375rem;
+  font-weight: 500; margin: 0 0 1rem; }
+.statbox { background: var(--paper-2); border-radius: var(--r-sm); padding: .65rem .8rem;
+  font-family: var(--font-mono); font-size: .8125rem; line-height: 1.55; color: var(--ink-2); margin: 0 0 1rem; }
+.unitbox { background: var(--blue-wash); color: #0a3f8e; border-radius: var(--r-sm);
+  padding: .65rem .8rem; font-size: .9375rem; margin: 0 0 1rem; }
+.bnd { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; margin: 0 0 1rem; }
+.bnd > div { border: 1px solid var(--rule-soft); border-radius: var(--r-sm); padding: .7rem .85rem; }
+.bnd h6 { margin: 0 0 .45rem; font-size: .6875rem; text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
+.bnd .hold { background: var(--green-wash); border-color: transparent; }
+.bnd .hold h6 { color: var(--green-ink); }
+.bnd .fail { background: var(--orange-wash); border-color: transparent; }
+.bnd .fail h6 { color: var(--orange-ink); }
+.bnd ul { margin: 0; padding-left: 1.05rem; font-size: .875rem; }
+.bnd li + li { margin-top: .3rem; }
+.bnd .hold li { color: #255019; }
+.bnd .fail li { color: var(--orange-ink); }
+@media (max-width: 680px) { .bnd { grid-template-columns: 1fr; } }
+.citerow { display: flex; flex-wrap: wrap; gap: .35rem; margin: .2rem 0 0; }
+.cite { font-size: .75rem; font-family: var(--font-mono); background: var(--paper-2); color: var(--ink-2);
+  border-radius: 999px; padding: .2rem .55rem; }
+a.cite:hover { background: var(--navy); color: #fff; text-decoration: none; }
+
+/* ── Claim ladder ── */
+.rungs { display: grid; gap: .7rem; counter-reset: none; }
+.rung { display: grid; grid-template-columns: 54px minmax(0,1fr); gap: 1rem;
+  border: 1px solid var(--rule-soft); border-radius: var(--r-lg); padding: 1.1rem 1.25rem; background: #fff; }
+.rung-n { font-family: var(--font-mono); font-size: 1.5rem; color: var(--navy); line-height: 1; }
+.rung h3 { margin: 0 0 .35rem; font-size: 1.0625rem; }
+.rung p { margin: 0 0 .6rem; font-size: .9375rem; color: var(--ink-2); }
+.rung .ours { background: var(--paper-3); border-radius: var(--r-sm); padding: .55rem .75rem;
+  font-size: .875rem; color: var(--ink); margin: 0 0 .5rem; }
+.rung .cost { font-size: .8125rem; color: var(--muted); margin: 0; }
+@media (max-width: 560px) { .rung { grid-template-columns: 1fr; gap: .4rem; } }
+
+/* ── Worked example tables ── */
+.tb { overflow-x: auto; margin: 0 0 1rem; }
+.tb table { width: 100%; border-collapse: collapse; font-size: .875rem; min-width: 440px; }
+.tb td { padding: .45rem .6rem; border-bottom: 1px solid var(--rule-soft); vertical-align: top; }
+.tb td:first-child { color: var(--muted); width: 42%; }
+.tb td:last-child { font-family: var(--font-mono); font-size: .8125rem; }
+
+/* ── Figures drawn here ── */
+.figsvg { background: #fff; border: 1px solid var(--rule-soft); border-radius: var(--r-lg);
+  padding: 1.1rem 1.25rem; overflow-x: auto; }
+.figsvg svg { width: 100%; min-width: 620px; height: auto; display: block; }
+.figcap { font-size: .875rem; color: var(--muted); margin: .7rem 0 0; }
+
+/* ── Deep dive ── */
+.sci { border-top: 1px solid var(--rule-soft); padding-top: .9rem; margin-top: .9rem; }
+.sci:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
+.sci h4 { margin: 0 0 .35rem; font-size: .9375rem; }
+.sci p { margin: 0 0 .4rem; font-size: .9375rem; color: var(--ink-2); }
+.armlist { margin: 0 0 .8rem; padding-left: 1.1rem; font-size: .9375rem; }
+.armlist li { margin-bottom: .3rem; }
+.chk { background: var(--paper-3); border-radius: var(--r); padding: .9rem 1.05rem; }
+.chk + .chk { margin-top: .6rem; }
+.chk .cq { font-weight: 600; font-size: .9375rem; margin: 0 0 .4rem; }
+.chk .ca { font-size: .9375rem; color: var(--ink-2); margin: 0; }
+.chk .cz { font-size: .875rem; color: var(--muted); margin: 0 0 .5rem; }
+
+/* ── Reading list ── */
+.litrow { border-bottom: 1px solid var(--rule-soft); padding: .9rem 0; }
+.litrow:last-child { border-bottom: 0; }
+.litrow .lt { font-weight: 600; font-size: .9375rem; }
+.litrow .lm { font-size: .8125rem; color: var(--muted); margin: .15rem 0 .35rem; }
+.litrow .lu { font-size: .875rem; color: var(--ink-2); margin: 0; }

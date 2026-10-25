@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Results reading · ReLEAF plant seat</title>
+<meta name="description" content="Twenty-eight questions on reading and interpreting our own Results page, each answered with the arithmetic, the unit of inference and the boundary stated exactly.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4c0 9-5.5 14-12 14-1.6 0-3-.3-4-.8' stroke='%235aaa47' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/base.css?v=2">
+<link rel="stylesheet" href="assets/css/pages.css?v=2">
+</head>
+<body>
+<nav class="nav"></nav>
+
+<header class="wrap hero" style="padding-bottom:1.25rem">
+  <div class="eyebrow">05</div>
+  <h1><span class="only-en">Results reading</span><span class="only-zh">結果詮釋</span></h1>
+  <p class="lede" style="max-width:64ch">
+    <span class="only-en">Knowing a number is the easy half. These twenty-eight questions ask what each number licenses, what it does not, and under which named failure mode. Every answer carries the arithmetic, the unit of inference and a two-column boundary.</span>
+    <span class="only-zh">記得數字是簡單的那一半。這二十八題問的是：每個數字能支撐什麼、不能支撐什麼、以及是哪一種具名的失效模式。每個答案都附算術、推論單位，以及分兩欄的邊界。</span>
+  </p>
+  <div class="rule-tri"><i></i><i></i><i></i></div>
+  <div class="note note-b" style="margin-top:1.5rem;max-width:70ch">
+    <span class="only-en"><b>Why these answers look different.</b> The first answer key said "one plate per condition, so the n is one" and stopped. Students and advisors both said the same thing back: that is a confession, not a boundary. Every answer here is written to the standard on the <a href="rigour.html">Boundary</a> page — a claim, the numbers behind it, what received the treatment, and what the design could not have seen.</span>
+    <span class="only-zh"><b>這些答案為什麼不一樣。</b>第一版答案寫到「每個條件一皿，所以n等於一」就停住。學生和老師都回報了同一件事：那是認錯，不是邊界。這裡每個答案都照 <a href="rigour.html">邊界標準</a> 那一頁的規格寫——結論、背後的數字、處理加在什麼上面、以及這個設計本來就看不到什麼。</span>
+  </div>
+</header>
+
+<main class="wrap" style="padding-bottom:1rem">
+  <section>
+    <div class="sec-head">
+      <h2><span class="only-en">Four numbers worked through</span><span class="only-zh">四個數字的完整演算</span></h2>
+      <p><span class="only-en">Do the arithmetic out loud in the room. A reconciliation beats an apology, and each of these takes about fifteen seconds to say.</span><span class="only-zh">在評審室裡把算術講出來。把矛盾對起來勝過道歉，而這四個每一個大約十五秒就講完。</span></p>
+    </div>
+    <div id="worked"></div>
+  </section>
+</main>
+
+<div class="bar">
+  <div class="wrap bar-in">
+    <input class="search" id="q" type="search" placeholder="Search a question…" aria-label="Search questions">
+    <div class="chips" id="topics"></div>
+    <div class="bar-count" id="count"></div>
+  </div>
+</div>
+
+<main class="wrap" id="list" style="padding-bottom:3rem"></main>
+
+<section class="wrap" style="padding-bottom:4rem">
+  <div class="btn-row">
+    <a class="btn btn-accent" href="qa.html"><span class="only-en">Drill these against the clock</span><span class="only-zh">計時演練這一類</span></a>
+    <a class="btn btn-line" href="rigour.html"><span class="only-en">The boundary standard</span><span class="only-zh">邊界標準</span></a>
+    <span class="lede-sm"><span class="only-en">On the drill page, select the "Results reading" chip.</span><span class="only-zh">在演練頁選「結果詮釋」那個標籤。</span></span>
+  </div>
+</section>
+
+<footer class="foot"><div class="wrap">
+  <p><span class="only-en">Every statistic on this page is computed from the means and standard deviations published on our own Plants and Results pages. Intervals are Welch; detectable differences are at alpha 0.05 two-sided and power 0.80. All of them treat seedlings as independent, which is the pseudoreplication each answer declares in the same breath.</span><span class="only-zh">本頁所有統計量都由我們自己 Plants 與 Results 頁公布的平均值與標準差算出。區間用 Welch；最小可檢出差異取雙尾 alpha 0.05、檢定力 0.80。所有計算都把苗當成獨立個體——而那正是每個答案都會同時講出來的偽重複。</span></p>
+</div></footer>
+
+<script src="assets/js/app.js?v=2"></script>
+<script src="assets/data/qa-results.js?v=2"></script>
+<script src="assets/data/rigour.js?v=2"></script>
+<script src="assets/data/lit.js?v=2"></script>
+<script>
+(function () {
+  var QS = QA_RESULTS;
+  var TOPICS = [
+    {id:'ladder',en:'Salt ladder',zh:'鹽度梯度'},{id:'treh',en:'Trehalose',zh:'海藻糖'},
+    {id:'chpep',en:'CH peptide',zh:'正瀚胜肽'},{id:'hydro',en:'Hydroponics',zh:'水耕'},
+    {id:'heat',en:'Heat',zh:'熱逆境'},{id:'ours',en:'Our proteins',zh:'自製蛋白'},
+    {id:'assay',en:'Assay',zh:'檢定'},{id:'model',en:'Model',zh:'模型'},
+    {id:'strategy',en:'Whole page',zh:'整頁'}
+  ];
+  var T = new Set(), Q = '';
+
+  function worked() {
+    var en = RL.lang() === 'en';
+    document.getElementById('worked').innerHTML = RIG_WORKED.map(function (w) {
+      return '<article class="card" style="margin-bottom:1rem;padding:1.5rem">' +
+        '<div class="q-head"><span class="pill pill-navy">' + w.id + '</span>' +
+          '<span class="pill pill-line">' + RL.bi(w.t_en, w.t_zh) + '</span></div>' +
+        '<p class="q-text" style="margin:.5rem 0 .9rem">' + RL.esc(en ? w.q_en : w.q_zh) + '</p>' +
+        '<div class="tb"><table><tbody>' +
+          w.rows.map(function (r) {
+            return '<tr><td>' + RL.esc(r[0]) + '</td><td>' + RL.esc(r[1]) + '</td></tr>';
+          }).join('') +
+        '</tbody></table></div>' +
+        '<h5 style="margin:0 0 .4rem;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)">' +
+          RL.bi('How to read it', '怎麼讀') + '</h5>' +
+        '<p style="font-size:.9375rem;color:var(--ink-2)">' + RL.esc(en ? w.read_en : w.read_zh) + '</p>' +
+        '<div class="note note-a">' + RL.esc(en ? w.do_en : w.do_zh) + '</div>' +
+      '</article>';
+    }).join('');
+  }
+
+  function hit(q) {
+    if (T.size && !T.has(q.topic)) return false;
+    if (!Q) return true;
+    return [q.id, q.q_en, q.q_zh, q.ev, q.trap, q.claim || '', q.stat || '', q.unit || '']
+      .concat(q.moves, q.holds || [], q.fails || []).join(' ').toLowerCase().indexOf(Q) > -1;
+  }
+
+  function chips() {
+    var el = document.getElementById('topics');
+    el.innerHTML = TOPICS.map(function (i) {
+      var n = QS.filter(function (q) { return q.topic === i.id; }).length;
+      return '<button class="chip" type="button" data-v="' + i.id + '" aria-pressed="false">' +
+        RL.bi(i.en, i.zh) + '<span class="c">' + n + '</span></button>';
+    }).join('');
+    el.querySelectorAll('.chip').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var v = b.dataset.v;
+        if (T.has(v)) { T.delete(v); b.setAttribute('aria-pressed', 'false'); }
+        else { T.add(v); b.setAttribute('aria-pressed', 'true'); }
+        render();
+      });
+    });
+  }
+
+  function card(q) {
+    return '<article class="q" data-id="' + q.id + '">' +
+      '<div class="q-head">' +
+        '<span class="pill pill-navy">' + RL.bi('Results reading', '結果詮釋') + '</span>' +
+        '<span class="pill pill-line">L' + q.lvl + '</span>' +
+        '<span class="q-id">' + q.id + '</span>' +
+      '</div>' +
+      '<p class="q-text">' + RL.esc(q.q_en) + '</p>' +
+      '<p class="q-zh">' + RL.esc(q.q_zh) + '</p>' +
+      '<button class="q-toggle" type="button">' + RL.bi('Show the answer ▾', '看答案 ▾') + '</button>' +
+      '<div hidden>' + RL.qaBody(q) + '</div>' +
+    '</article>';
+  }
+
+  function render() {
+    var shown = QS.filter(hit);
+    var el = document.getElementById('list');
+    el.innerHTML = shown.length ? shown.map(card).join('') : '<p class="empty">Nothing matches. Clear a filter.</p>';
+    document.getElementById('count').textContent = shown.length + ' / ' + QS.length;
+    el.querySelectorAll('.q-toggle').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var box = b.nextElementSibling;
+        box.hidden = !box.hidden;
+        b.innerHTML = box.hidden ? RL.bi('Show the answer ▾', '看答案 ▾') : RL.bi('Hide ▴', '收起 ▴');
+      });
+    });
+  }
+
+  document.getElementById('q').addEventListener('input', function (e) { Q = e.target.value.toLowerCase(); render(); });
+  document.addEventListener('DOMContentLoaded', function () { chips(); worked(); render(); });
+  document.addEventListener('langchange', function () {
+    if (document.getElementById('list').children.length) { chips(); worked(); render(); }
+  });
+})();
+</script>
+</body>
+</html>

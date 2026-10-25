@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Q&amp;A drill · ReLEAF plant seat</title>
-<meta name="description" content="Fact check, design check, boundary probe, depth, reasoning and hostile questions, with a 90-second drill.">
+<meta name="description" content="Fact check, design check, boundary probe, Results reading, depth, reasoning and hostile questions, with a 90-second drill.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4c0 9-5.5 14-12 14-1.6 0-3-.3-4-.8' stroke='%235aaa47' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/css/base.css?v=1">
-<link rel="stylesheet" href="assets/css/pages.css?v=1">
+<link rel="stylesheet" href="assets/css/base.css?v=2">
+<link rel="stylesheet" href="assets/css/pages.css?v=2">
 </head>
 <body>
 <nav class="nav"></nav>
@@ -16,8 +16,8 @@
   <div class="eyebrow">04</div>
   <h1><span class="only-en">Q&amp;A drill</span><span class="only-zh">問答演練</span></h1>
   <p class="lede" style="max-width:62ch">
-    <span class="only-en">Every question here is one a judge could ask on the evidence we published. Each carries three or four moves, the evidence to cite, and the thing that sinks the answer. Read them as a shape to build from, never as a script to recite.</span>
-    <span class="only-zh">這裡每一題，評審都可能根據我們公布的證據問出來。每題附三到四個動作、要引用的證據、以及會害你沉船的那件事。把它們當成可以搭建的形狀，不要當成要背的稿。</span>
+    <span class="only-en">Every question here is one a judge could ask on the evidence we published. Each carries three or four moves, the evidence to cite, and the thing that sinks the answer. The Results reading set adds the arithmetic, the unit of inference and the boundary in two columns. Read them as a shape to build from, never as a script to recite.</span>
+    <span class="only-zh">這裡每一題，評審都可能根據我們公布的證據問出來。每題附三到四個動作、要引用的證據、以及會害你沉船的那件事。「結果詮釋」那一類還附上算術、推論單位，以及分兩欄寫清楚的邊界。把它們當成可以搭建的形狀，不要當成要背的稿。</span>
   </p>
 </header>
 
@@ -59,18 +59,21 @@
   <p><span class="only-en">Ninety seconds is the working length of a judging answer. Most answers that fail in a judging room fail by running long.</span><span class="only-zh">九十秒是評審室裡一個回答的工作長度。大部分失敗的回答不是答錯，是講太久。</span></p>
 </div></footer>
 
-<script src="assets/js/app.js?v=1"></script>
-<script src="assets/data/qa-core.js?v=1"></script>
-<script src="assets/data/qa-probe.js?v=1"></script>
-<script src="assets/data/qa-hard.js?v=1"></script>
+<script src="assets/js/app.js?v=2"></script>
+<script src="assets/data/qa-core.js?v=2"></script>
+<script src="assets/data/qa-probe.js?v=2"></script>
+<script src="assets/data/qa-hard.js?v=2"></script>
+<script src="assets/data/qa-results.js?v=2"></script>
+<script src="assets/data/lit.js?v=2"></script>
 <script>
 (function () {
-  var QS = [].concat(QA_CORE, QA_PROBE, QA_HARD);
+  var QS = [].concat(QA_CORE, QA_PROBE, QA_HARD, QA_RESULTS);
 
   var KINDS = [
     {id:'fact',    en:'Fact check',    zh:'事實查核', cls:'pill-a'},
     {id:'design',  en:'Design check',  zh:'設計檢驗', cls:'pill-b'},
     {id:'boundary',en:'Boundary probe',zh:'邊界探測', cls:'pill-line'},
+    {id:'results', en:'Results reading', zh:'結果詮釋', cls:'pill-navy'},
     {id:'deep',    en:'Depth',         zh:'深度',     cls:'pill-v'},
     {id:'reason',  en:'Think on your feet', zh:'臨場推理', cls:'pill-o'},
     {id:'hostile', en:'Hostile',       zh:'刁難',     cls:'pill-r'},
@@ -112,19 +115,11 @@
     if (K.size && !K.has(q.kind)) return false;
     if (T.size && !T.has(q.topic)) return false;
     if (!Q) return true;
-    return [q.id, q.q_en, q.q_zh, q.ev, q.trap].concat(q.moves).join(' ').toLowerCase().indexOf(Q) > -1;
+    return [q.id, q.q_en, q.q_zh, q.ev, q.trap, q.claim || '', q.stat || '', q.unit || '']
+      .concat(q.moves, q.holds || [], q.fails || []).join(' ').toLowerCase().indexOf(Q) > -1;
   }
 
-  function body(q) {
-    return '<div class="q-body">' +
-      '<h5>' + RL.bi('The moves', '動作') + '</h5>' +
-      '<ol class="q-moves">' + q.moves.map(function (m) { return '<li>' + RL.esc(m) + '</li>'; }).join('') + '</ol>' +
-      '<h5>' + RL.bi('Evidence to cite', '要引用的證據') + '</h5>' +
-      '<p class="q-ev">' + RL.esc(q.ev) + '</p>' +
-      '<h5>' + RL.bi('What sinks it', '會沉船的地方') + '</h5>' +
-      '<p class="q-trap">' + RL.esc(q.trap) + '</p>' +
-    '</div>';
-  }
+  function body(q) { return RL.qaBody(q); }
 
   function card(q) {
     var k = kindOf[q.kind];

@@ -6,7 +6,10 @@
     { href: 'figures.html',   en: 'Figures',    zh: '圖像記憶' },
     { href: 'mechanism.html', en: 'Mechanisms', zh: '機制' },
     { href: 'qa.html',        en: 'Q&A drill',  zh: '問答演練' },
+    { href: 'results.html',   en: 'Results',    zh: '結果詮釋' },
+    { href: 'rigour.html',    en: 'Boundary',   zh: '邊界標準' },
     { href: 'kyle.html',      en: "Kyle's five", zh: '博後五問' },
+    { href: 'deep.html',      en: 'Deep dive',  zh: '五問深讀' },
     { href: 'answer.html',    en: 'Answer shape', zh: '答題架構' },
     { href: 'redlines.html',  en: 'Red lines',  zh: '紅線' }
   ];
@@ -80,6 +83,57 @@
              '<span class="only-zh">' + this.esc(zh || en) + '</span>';
     },
     lang() { return document.documentElement.lang || 'en'; },
-    shuffle(a) { const x = a.slice(); for (let i = x.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [x[i], x[j]] = [x[j], x[i]]; } return x; }
+    shuffle(a) { const x = a.slice(); for (let i = x.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [x[i], x[j]] = [x[j], x[i]]; } return x; },
+
+    /* Citation chips. Keys index window.LIT; an unknown key still prints. */
+    cites(keys) {
+      if (!keys || !keys.length) return '';
+      const L = window.LIT || {};
+      return '<div class="citerow">' + keys.map(k => {
+        const r = L[k];
+        if (!r) return '<span class="cite">' + this.esc(k) + '</span>';
+        const label = r.a.split(',')[0].split(' ')[0] + ' ' + r.y;
+        return r.pmid
+          ? '<a class="cite" href="https://pubmed.ncbi.nlm.nih.gov/' + r.pmid + '/" target="_blank" rel="noopener">' + this.esc(label) + '</a>'
+          : '<span class="cite">' + this.esc(label) + '</span>';
+      }).join('') + '</div>';
+    },
+
+    /* One answer card body. Older questions carry moves/ev/trap only; the
+       Results set adds a claim, the arithmetic, the unit of inference and the
+       two-column boundary. Every field is optional. */
+    qaBody(q) {
+      let h = '<div class="q-body">';
+      if (q.claim) {
+        h += '<h5>' + this.bi('The claim that is warranted', '站得住的結論') + '</h5>' +
+             '<p class="claimbox">' + this.esc(q.claim) + '</p>';
+      }
+      h += '<h5>' + this.bi('The moves', '動作') + '</h5>' +
+           '<ol class="q-moves">' + q.moves.map(m => '<li>' + this.esc(m) + '</li>').join('') + '</ol>';
+      if (q.stat) {
+        h += '<h5>' + this.bi('The arithmetic', '算術') + '</h5>' +
+             '<p class="statbox">' + this.esc(q.stat) + '</p>';
+      }
+      if (q.unit) {
+        h += '<h5>' + this.bi('The unit of inference', '推論單位') + '</h5>' +
+             '<p class="unitbox">' + this.esc(q.unit) + '</p>';
+      }
+      if (q.holds || q.fails) {
+        h += '<h5>' + this.bi('The boundary, stated exactly', '精確說出邊界') + '</h5><div class="bnd">' +
+             '<div class="hold"><h6>' + this.bi('It supports', '支持') + '</h6><ul>' +
+               (q.holds || []).map(x => '<li>' + this.esc(x) + '</li>').join('') + '</ul></div>' +
+             '<div class="fail"><h6>' + this.bi('It does not support', '不支持') + '</h6><ul>' +
+               (q.fails || []).map(x => '<li>' + this.esc(x) + '</li>').join('') + '</ul></div>' +
+             '</div>';
+      }
+      h += '<h5>' + this.bi('Evidence to cite', '要引用的證據') + '</h5>' +
+           '<p class="q-ev">' + this.esc(q.ev) + '</p>' +
+           '<h5>' + this.bi('What sinks it', '會沉船的地方') + '</h5>' +
+           '<p class="q-trap">' + this.esc(q.trap) + '</p>';
+      if (q.lit) {
+        h += '<h5 style="margin-top:1rem">' + this.bi('Reading behind it', '背後的文獻') + '</h5>' + this.cites(q.lit);
+      }
+      return h + '</div>';
+    }
   };
 })();
