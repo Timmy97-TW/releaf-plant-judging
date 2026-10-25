@@ -43,7 +43,7 @@
 
 <script src="assets/js/app.js?v=2"></script>
 <script src="assets/data/deep.js?v=2"></script>
-<script src="assets/data/figs.js?v=3"></script>
+<script src="assets/data/figs.js?v=5"></script>
 <script src="assets/data/lit.js?v=2"></script>
 <script>
 (function () {
@@ -155,7 +155,15 @@
     lit();
     wire();
   }
-  document.addEventListener('DOMContentLoaded', render);
+  document.addEventListener('DOMContentLoaded', function () {
+    render();
+    /* The sections are built after load, so a link into one has to be
+       re-applied once they exist. */
+    if (location.hash.length > 1) {
+      var t = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (t) t.scrollIntoView({ block: 'start' });
+    }
+  });
   document.addEventListener('langchange', function () {
     if (document.getElementById('mods').children.length) render();
   });
