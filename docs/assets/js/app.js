@@ -1,17 +1,27 @@
 /* Shared chrome: nav, language toggle, small helpers. */
 (function () {
+  /* 學習軌道 — 2026/11/5 為 Timmy 重做的五頁，放第一排。 */
   const PAGES = [
-    { href: 'index.html',     en: 'Start',      zh: '開始' },
-    { href: 'facts.html',     en: 'Facts',      zh: '事實庫' },
-    { href: 'figures.html',   en: 'Figures',    zh: '圖像記憶' },
-    { href: 'mechanism.html', en: 'Mechanisms', zh: '機制' },
-    { href: 'qa.html',        en: 'Q&A drill',  zh: '問答演練' },
-    { href: 'results.html',   en: 'Results',    zh: '結果詮釋' },
-    { href: 'rigour.html',    en: 'Boundary',   zh: '邊界標準' },
-    { href: 'kyle.html',      en: "Kyle's five", zh: '博後五問' },
-    { href: 'deep.html',      en: 'Deep dive',  zh: '五問深讀' },
+    { href: 'index.html',    en: 'Start',    zh: '開始' },
+    { href: 'matrix.html',   en: 'Matrix',   zh: '實驗矩陣' },
+    { href: 'numbers.html',  en: 'Numbers',  zh: '數字庫' },
+    { href: 'tonight.html',  en: 'Kyle 10',  zh: 'Kyle 十問' },
+    { href: 'decoder.html',  en: 'Decoder',  zh: '名詞解碼' },
+    { href: 'drill.html',    en: 'Drill',    zh: '演練' }
+  ];
+
+  /* 10/25 建的那些頁，保留在第二排。 */
+  const DEEP = [
+    { href: 'facts.html',     en: 'Facts',        zh: '事實庫' },
+    { href: 'figures.html',   en: 'Figures',      zh: '圖像記憶' },
+    { href: 'mechanism.html', en: 'Mechanisms',   zh: '機制' },
+    { href: 'qa.html',        en: 'Q&A 117',      zh: '問答 117' },
+    { href: 'results.html',   en: 'Results',      zh: '結果詮釋' },
+    { href: 'rigour.html',    en: 'Boundary',     zh: '邊界標準' },
+    { href: 'kyle.html',      en: "Kyle 10/24",   zh: '博後五問' },
+    { href: 'deep.html',      en: 'Deep dive',    zh: '五問深讀' },
     { href: 'answer.html',    en: 'Answer shape', zh: '答題架構' },
-    { href: 'redlines.html',  en: 'Red lines',  zh: '紅線' }
+    { href: 'redlines.html',  en: 'Red lines',    zh: '紅線' }
   ];
 
   const here = location.pathname.split('/').pop() || 'index.html';
@@ -27,9 +37,15 @@
       '<div class="nav-in">' +
       '<a class="nav-brand" href="index.html">' + leaf +
       '<span class="only-en">ReLEAF · Plants</span><span class="only-zh">ReLEAF · 植物組</span></a>' +
+      '<div class="nav-two">' +
       '<div class="nav-links">' +
       PAGES.map(p => '<a href="' + p.href + '"' + (p.href === here ? ' aria-current="page"' : '') +
         '><span class="only-en">' + p.en + '</span><span class="only-zh">' + p.zh + '</span></a>').join('') +
+      '</div>' +
+      '<div class="nav-deep"><span class="lbl">深讀</span>' +
+      DEEP.map(p => '<a href="' + p.href + '"' + (p.href === here ? ' aria-current="page"' : '') +
+        '><span class="only-en">' + p.en + '</span><span class="only-zh">' + p.zh + '</span></a>').join('') +
+      '</div>' +
       '</div>' +
       '<div class="lang" role="group" aria-label="Language">' +
       '<button type="button" data-lang="en">EN</button>' +
@@ -47,8 +63,8 @@
     document.dispatchEvent(new CustomEvent('langchange', { detail: l }));
   }
 
-  let saved = 'en';
-  try { saved = localStorage.getItem('releaf-plant-lang') || 'en'; } catch (e) { /* ignore */ }
+  let saved = 'zh';
+  try { saved = localStorage.getItem('releaf-plant-lang') || 'zh'; } catch (e) { /* ignore */ }
 
   document.addEventListener('DOMContentLoaded', function () {
     nav();

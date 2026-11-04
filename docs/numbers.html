@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>數字庫 · ReLEAF 植物組</title>
+<meta name="description" content="每一個數字，附它的 n、它的推論單位、它的對照，以及它能支撐什麼。含完整 ELISA 表與五張解釋圖。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4c0 9-5.5 14-12 14-1.6 0-3-.3-4-.8' stroke='%235aaa47' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/base.css?v=2">
+<link rel="stylesheet" href="assets/css/pages.css?v=2">
+<link rel="stylesheet" href="assets/css/learn.css?v=1">
+</head>
+<body>
+<nav class="nav"></nav>
+
+<header class="wrap hero">
+  <div class="eyebrow">02 · 數字</div>
+  <h1>數字庫</h1>
+  <p class="lede lead-big">
+    一個數字在評審室裡的價值不是它的大小，是它的<b>推論單位</b>。
+    40 株長在同一個盤上，推論單位是盤，n 就是 1。這一頁每一列都把推論單位寫出來。
+  </p>
+  <div class="rule-tri"><i></i><i></i><i></i></div>
+</header>
+
+<section class="wrap" style="padding-top:1rem">
+  <div class="band">
+    <div class="eyebrow">五個要背到反射的數字</div>
+    <div class="band-row">
+      <div><div class="stat">74.95→1.36</div><div class="stat-l">mm 主根，0→150 mM</div></div>
+      <div><div class="stat">1/16</div><div class="stat-l">載體毒性地板</div></div>
+      <div><div class="stat">4.56–5.45</div><div class="stat-l">µg/mL 空宿主 ELISA 背景</div></div>
+      <div><div class="stat">3</div><div class="stat-l">µg/mL 標準曲線上限（全部外插）</div></div>
+      <div><div class="stat">171</div><div class="stat-l">mM LB 自帶的 NaCl</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="sec-head"><h2>五張圖</h2><p>把算術畫出來，比講一遍好記。</p></div>
+  <div id="dg-ceiling"></div>
+  <div id="dg-norm"></div>
+  <div id="dg-elisa"></div>
+  <div id="dg-unit"></div>
+  <div id="dg-chain"></div>
+</section>
+
+<section class="wrap">
+  <div class="sec-head">
+    <h2>21 個數字</h2>
+    <p>綠框的七個是「被問到一定要答得出來」的。</p>
+  </div>
+  <div class="mx-bar" id="f-g"></div>
+  <div class="mx-bar">
+    <button class="btn btn-sm btn-line" id="onlystar">只看要背的</button>
+    <button class="btn btn-sm btn-line" id="reset">全部</button>
+    <span class="sp"></span>
+    <span class="mx-count" id="count"></span>
+  </div>
+  <div id="list"></div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>全部出自凍結後的 ReLEAF wiki：<a href="https://2026.igem.wiki/gems-taiwan/plant">Plants</a> 與
+    <a href="https://2026.igem.wiki/gems-taiwan/results">Results</a>。換算與統計是在這裡算的，算式都寫出來了。</p>
+  </div>
+</footer>
+
+<script src="assets/js/app.js?v=3"></script>
+<script src="assets/data/draw.js?v=1"></script>
+<script src="assets/data/numbers.js?v=1"></script>
+<script>
+(function () {
+  var N = window.NUMBERS, G = window.NUM_GROUPS;
+  var sel = '', star = false;
+
+  function diagram(key, host) {
+    var d = window.DRAW[key];
+    document.getElementById(host).innerHTML =
+      '<div class="dg"><div class="dg-h"><h3>' + RL.esc(d.t_zh) + '</h3>' +
+      '<span class="en">' + RL.esc(d.t_en) + '</span></div>' +
+      '<p class="dg-lede">' + RL.esc(d.lede_zh) + '</p>' +
+      '<div class="dg-box">' + d.svg + '</div>' +
+      '<p class="dg-take"><b>要記的：</b>' + RL.esc(d.take_zh) + '</p></div>';
+  }
+  ['ceiling', 'norm', 'elisa', 'unit', 'chain'].forEach(function (k) { diagram(k, 'dg-' + k); });
+
+  document.getElementById('f-g').innerHTML =
+    '<span class="mx-count" style="min-width:5.5rem">分組</span>' +
+    G.map(function (g) {
+      var n = N.filter(function (x) { return x.g === g.id; }).length;
+      return '<button class="btn btn-sm btn-line" data-g="' + g.id + '">' + RL.esc(g.zh) +
+             ' <span style="opacity:.55">' + n + '</span></button>';
+    }).join('');
+
+  function table(rows) {
+    var h = '<div class="nc-tb-w"><table class="nc-tb"><thead><tr>' +
+      rows[0].map(function (c) { return '<th>' + RL.esc(c) + '</th>'; }).join('') +
+      '</tr></thead><tbody>';
+    for (var i = 1; i < rows.length; i++) {
+      var wb = rows[i][0].indexOf('WB800') === 0;
+      h += '<tr' + (wb ? ' class="wb"' : '') + '>' +
+        rows[i].map(function (c) { return '<td>' + RL.esc(c) + '</td>'; }).join('') + '</tr>';
+    }
+    return h + '</tbody></table></div>';
+  }
+
+  function card(x) {
+    var h = '<div class="nc' + (x.star ? ' hi' : '') + '">' +
+      '<div class="nc-h"><span class="nc-id">' + RL.esc(x.id) + '</span>' +
+      '<h4>' + RL.esc(x.label_zh) + '</h4>' +
+      '<span class="nc-id">' + RL.esc(x.label_en) + '</span></div>' +
+      '<p class="nc-v">' + RL.esc(x.v) + '</p>' +
+      '<p class="nc-at">' + RL.esc(x.at_zh) + (x.sd ? ' · ' + RL.esc(x.sd) : '') + '</p>' +
+      (x.table ? table(x.table) : '') +
+      '<div class="nc-meta">' +
+        '<div><b>n</b>' + RL.esc(x.n_zh) + '</div>' +
+        '<div><b>對照</b>' + RL.esc(x.ctl_zh) + '</div>' +
+      '</div>' +
+      '<p style="font-size:.9375rem;margin:0 0 .7rem"><b>推論單位　</b>' + RL.esc(x.unit_zh) + '</p>' +
+      '<div class="nc-two">' +
+        '<div class="nc-ok"><h6>它支撐</h6><ul>' +
+          x.holds_zh.map(function (s) { return '<li>' + RL.esc(s) + '</li>'; }).join('') + '</ul></div>' +
+        '<div class="nc-no"><h6>它不支撐</h6><ul>' +
+          x.fails_zh.map(function (s) { return '<li>' + RL.esc(s) + '</li>'; }).join('') + '</ul></div>' +
+      '</div>' +
+      '<p class="nc-math"><b>算術　</b>' + RL.esc(x.math_zh) + '</p>' +
+      '<p class="nc-trap"><b>陷阱　</b>' + RL.esc(x.trap_zh) + '</p>' +
+      '<p class="nc-src">' + RL.esc(x.src) + '</p>' +
+      '</div>';
+    return h;
+  }
+
+  function paint() {
+    document.querySelectorAll('[data-g]').forEach(function (b) {
+      b.classList.toggle('btn-accent', sel === b.dataset.g);
+    });
+    document.getElementById('onlystar').classList.toggle('btn-accent', star);
+    var list = N.filter(function (x) {
+      return (!sel || x.g === sel) && (!star || x.star);
+    });
+    var out = '';
+    G.forEach(function (g) {
+      var rows = list.filter(function (x) { return x.g === g.id; });
+      if (!rows.length) return;
+      out += '<div class="ng"><div class="ng-h"><h2>' + RL.esc(g.zh) +
+             ' <span style="font-size:.8125rem;color:var(--faint);font-weight:400">' +
+             RL.esc(g.en) + '</span></h2><p>' + RL.esc(g.note_zh) + '</p></div>' +
+             rows.map(card).join('') + '</div>';
+    });
+    document.getElementById('list').innerHTML = out ||
+      '<p class="empty">沒有符合的數字。</p>';
+    document.getElementById('count').textContent = list.length + ' / ' + N.length + ' 個數字';
+  }
+
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-g]');
+    if (b) { sel = (sel === b.dataset.g) ? '' : b.dataset.g; paint(); }
+  });
+  document.getElementById('onlystar').addEventListener('click', function () { star = !star; paint(); });
+  document.getElementById('reset').addEventListener('click', function () { sel = ''; star = false; paint(); });
+
+  paint();
+})();
+</script>
+</body>
+</html>

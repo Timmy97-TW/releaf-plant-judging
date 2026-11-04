@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>演練 · ReLEAF 植物組</title>
+<meta name="description" content="關鍵字優先的問答演練。先說出關鍵字，再開答案。可選今晚的 35 題或全部 152 題。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4c0 9-5.5 14-12 14-1.6 0-3-.3-4-.8' stroke='%235aaa47' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/base.css?v=2">
+<link rel="stylesheet" href="assets/css/pages.css?v=2">
+<link rel="stylesheet" href="assets/css/learn.css?v=1">
+</head>
+<body>
+<nav class="nav"></nav>
+
+<header class="wrap hero">
+  <div class="eyebrow">05 · 演練</div>
+  <h1>演練</h1>
+  <p class="lede lead-big">
+    規則只有一條：<b>先把關鍵字說出口，再按開啟</b>。
+    默念不算 —— 評審室裡要出聲的，練習時就要出聲。
+    <span class="kbd">空白</span> 開答案，<span class="kbd">→</span> 下一題，
+    <span class="kbd">1</span> 答出來了，<span class="kbd">2</span> 沒答出來。
+  </p>
+  <div class="rule-tri"><i></i><i></i><i></i></div>
+</header>
+
+<section class="wrap">
+  <div class="mx-bar" id="decks"></div>
+  <div class="mx-bar">
+    <button class="btn btn-sm btn-line" id="shuffle">重新洗牌</button>
+    <label style="font-size:.8125rem;color:var(--muted);display:flex;align-items:center;gap:.35rem">
+      <input type="checkbox" id="clockon" checked> 90 秒計時
+    </label>
+    <span class="sp"></span>
+    <span class="mx-count" id="score"></span>
+  </div>
+
+  <div class="dr-prog"><i id="prog" style="width:0"></i></div>
+
+  <div class="dr" id="dr">
+    <div class="dr-top">
+      <span class="dr-pos" id="pos"></span>
+      <span class="dr-clk" id="clk">1:30</span>
+    </div>
+    <p class="dr-q" id="q"></p>
+    <p class="dr-qen" id="qen"></p>
+
+    <div class="dr-hide">
+      <button class="btn btn-accent" id="reveal">說完了，開答案　<span class="kbd" style="background:rgba(255,255,255,.2);border-color:transparent;color:#fff">空白</span></button>
+    </div>
+
+    <div class="dr-rev" id="rev"></div>
+  </div>
+
+  <div class="mx-bar" style="margin-top:1rem">
+    <button class="btn btn-sm btn-accent" id="got">1 · 答出來了</button>
+    <button class="btn btn-sm btn-line" id="missed">2 · 沒答出來</button>
+    <span class="sp"></span>
+    <button class="btn btn-sm btn-line" id="next">下一題 →</button>
+  </div>
+</section>
+
+<section class="wrap narrow" id="shaky-wrap" style="display:none">
+  <div class="sec-head"><h2>沒答出來的</h2><p>這一輪標 2 的題。週六就從這一份開始。</p></div>
+  <ol class="say" id="shaky" style="font-size:.9375rem"></ol>
+</section>
+
+<section class="wrap narrow">
+  <div class="sec-head"><h2>週六怎麼帶學生</h2></div>
+  <div class="route">
+    <div class="route-i"><div>
+      <span class="mins">15 分</span>
+      <h3>先只跑關鍵字，不要讓他們講完整句子</h3>
+      <p>選「今晚 35 題」，開計時。他們只要說出三到四個英文關鍵字就算過。
+      這一輪的目的是找出哪幾題連關鍵字都生不出來。</p>
+    </div></div>
+    <div class="route-i"><div>
+      <span class="mins">25 分</span>
+      <h3>只對「沒答出來」的那幾題講完整句子</h3>
+      <p>關鍵字有了之後，句子是自然長出來的。對著 Kyle 十問那一頁的 say 順序念一次，
+      然後蓋住自己講。</p>
+    </div></div>
+    <div class="route-i"><div>
+      <span class="mins">20 分</span>
+      <h3>你打斷他們</h3>
+      <p>講到第二句時插話問一個追問。刁難題考的不是知識，是能不能維持同樣的音量與速度。
+      最好的追問都寫在每一題的「陷阱」那一欄。</p>
+    </div></div>
+    <div class="route-i"><div>
+      <span class="mins">10 分</span>
+      <h3>最後只練三句</h3>
+      <p>「40 株共用一個盤，所以生物重複是 1。」
+      「空宿主 WB800 自己就讀 4.5 到 5.5 µg/mL。」
+      「Yes, TB 確實影響植物生長，這就是我們把劑量定在 1/40 的原因。」
+      這三句講不卡，整場就穩了。</p>
+    </div></div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>牌組來自 Kyle 11/4 的十問、Audrey 的 25 條會議紀錄，以及 10/25 建的 117 題題庫。</p>
+  </div>
+</footer>
+
+<script src="assets/js/app.js?v=3"></script>
+<script src="assets/data/lit.js?v=1"></script>
+<script src="assets/data/tonight.js?v=1"></script>
+<script src="assets/data/qa-core.js?v=1"></script>
+<script src="assets/data/qa-probe.js?v=1"></script>
+<script src="assets/data/qa-hard.js?v=1"></script>
+<script src="assets/data/qa-results.js?v=1"></script>
+<script>
+(function () {
+  /* ── 把三種來源收成一種牌 ── */
+  var cards = [];
+
+  window.KYLE10.forEach(function (q, i) {
+    cards.push({
+      deck: 'kyle', id: 'Kyle ' + (i + 1),
+      q: q.q_zh, qen: q.q_en, kw: q.kw,
+      body: '<h5>照這個順序講</h5><ol class="say">' +
+            q.say.map(function (s) { return '<li>' + RL.esc(s) + '</li>'; }).join('') + '</ol>' +
+            '<h5>陷阱</h5><p class="nc-trap">' + RL.esc(q.trap_zh) + '</p>' +
+            '<h5>會議裁定</h5><p class="ruling">' + RL.esc(q.ruling_zh) + '</p>',
+      src: 'Kyle Peng · 2026/11/4'
+    });
+  });
+
+  window.AUDREY.qs.forEach(function (x) {
+    cards.push({
+      deck: 'audrey', id: x.id,
+      q: x.q, qen: '', kw: x.kw,
+      body: '<h5>會議上的答案</h5><p style="font-size:.9375rem">' + RL.esc(x.a) + '</p>' +
+            '<h5>講師裁定</h5><p class="adq-fb">' + RL.esc(x.fb) + '</p>' +
+            '<h5>對照 wiki 要補的</h5><p class="adq-nt">' + RL.esc(x.note_zh) + '</p>',
+      src: 'Audrey 會議紀錄 · 2026/11/4 · section ' + x.sec
+    });
+  });
+
+  [].concat(window.QA_CORE || [], window.QA_PROBE || [], window.QA_HARD || [], window.QA_RESULTS || [])
+    .forEach(function (q) {
+      cards.push({
+        deck: 'bank', id: q.id,
+        q: q.q_zh || q.q_en, qen: q.q_en, kw: null,
+        body: RL.qaBody(q),
+        src: '10/25 題庫 · ' + (q.kind || '') + ' · ' + (q.topic || '')
+      });
+    });
+
+  var DECKS = [
+    { id: 'tonight', zh: '今晚 35 題', test: function (c) { return c.deck !== 'bank'; } },
+    { id: 'kyle',    zh: 'Kyle 十問',  test: function (c) { return c.deck === 'kyle'; } },
+    { id: 'audrey',  zh: 'Audrey 25', test: function (c) { return c.deck === 'audrey'; } },
+    { id: 'bank',    zh: '10/25 題庫', test: function (c) { return c.deck === 'bank'; } },
+    { id: 'all',     zh: '全部',       test: function () { return true; } }
+  ];
+
+  var deck = 'tonight', order = [], i = 0, shown = false;
+  var got = 0, missed = 0, shaky = [];
+  var t = 90, timer = null;
+
+  document.getElementById('decks').innerHTML =
+    '<span class="mx-count" style="min-width:5.5rem">牌組</span>' +
+    DECKS.map(function (d) {
+      var n = cards.filter(d.test).length;
+      return '<button class="btn btn-sm btn-line" data-d="' + d.id + '">' + RL.esc(d.zh) +
+             ' <span style="opacity:.55">' + n + '</span></button>';
+    }).join('');
+
+  function build() {
+    var d = DECKS.filter(function (x) { return x.id === deck; })[0];
+    order = RL.shuffle(cards.filter(d.test));
+    i = 0; got = 0; missed = 0; shaky = [];
+    document.getElementById('shaky-wrap').style.display = 'none';
+    document.querySelectorAll('[data-d]').forEach(function (b) {
+      b.classList.toggle('btn-accent', b.dataset.d === deck);
+    });
+    show();
+  }
+
+  function clockTick() {
+    t--;
+    var el = document.getElementById('clk');
+    var m = Math.floor(Math.abs(t) / 60), s = Math.abs(t) % 60;
+    el.textContent = (t < 0 ? '−' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+    el.classList.toggle('warn', t <= 20 && t >= 0);
+    el.classList.toggle('over', t < 0);
+  }
+
+  function show() {
+    var c = order[i];
+    shown = false;
+    document.getElementById('dr').classList.remove('show');
+    if (!c) {
+      document.getElementById('q').textContent = '這一輪跑完了。';
+      document.getElementById('qen').textContent = '';
+      document.getElementById('rev').innerHTML = '';
+      if (shaky.length) {
+        document.getElementById('shaky-wrap').style.display = '';
+        document.getElementById('shaky').innerHTML = shaky.map(function (s) {
+          return '<li>' + RL.esc(s) + '</li>'; }).join('');
+      }
+      clearInterval(timer);
+      return;
+    }
+    document.getElementById('pos').textContent = (i + 1) + ' / ' + order.length + ' · ' + c.id;
+    document.getElementById('q').textContent = c.q;
+    document.getElementById('qen').textContent = c.qen || '';
+    document.getElementById('rev').innerHTML =
+      (c.kw ? '<h5 style="margin:0 0 .45rem;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--faint)">關鍵字</h5>' +
+        '<div class="kw" style="margin-bottom:.4rem">' +
+        c.kw.map(function (k) { return '<span>' + RL.esc(k) + '</span>'; }).join('') + '</div>' : '') +
+      c.body + '<p class="dr-src" style="margin-top:.9rem">' + RL.esc(c.src) + '</p>';
+    document.getElementById('prog').style.width =
+      Math.round(i / order.length * 100) + '%';
+    document.getElementById('score').textContent = '答出 ' + got + ' · 沒答出 ' + missed;
+
+    clearInterval(timer);
+    t = 90; document.getElementById('clk').textContent = '1:30';
+    document.getElementById('clk').className = 'dr-clk';
+    if (document.getElementById('clockon').checked) timer = setInterval(clockTick, 1000);
+  }
+
+  function reveal() { shown = true; document.getElementById('dr').classList.add('show'); clearInterval(timer); }
+  function next() { i++; show(); }
+  function mark(ok) {
+    var c = order[i];
+    if (c) { if (ok) got++; else { missed++; shaky.push(c.id + '　' + c.q); } }
+    next();
+  }
+
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-d]');
+    if (b) { deck = b.dataset.d; build(); }
+  });
+  document.getElementById('reveal').addEventListener('click', reveal);
+  document.getElementById('next').addEventListener('click', next);
+  document.getElementById('got').addEventListener('click', function () { mark(true); });
+  document.getElementById('missed').addEventListener('click', function () { mark(false); });
+  document.getElementById('shuffle').addEventListener('click', build);
+  document.getElementById('clockon').addEventListener('change', function () {
+    clearInterval(timer);
+    if (this.checked) { t = 90; document.getElementById('clk').textContent = '1:30';
+      timer = setInterval(clockTick, 1000); }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.target.matches('input, textarea')) return;
+    if (e.key === ' ') { e.preventDefault(); shown ? next() : reveal(); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
+    else if (e.key === '1') { mark(true); }
+    else if (e.key === '2') { mark(false); }
+  });
+
+  build();
+})();
+</script>
+</body>
+</html>

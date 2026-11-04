@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kyle 十問 · 11/4 會議 · ReLEAF 植物組</title>
+<meta name="description" content="Kyle 2026/11/4 的十個問題，每一題的關鍵字流、要講的英文句子、手上要有的數字與陷阱；加上 Audrey 整理的 25 條會議裁定。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4c0 9-5.5 14-12 14-1.6 0-3-.3-4-.8' stroke='%235aaa47' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/base.css?v=2">
+<link rel="stylesheet" href="assets/css/pages.css?v=2">
+<link rel="stylesheet" href="assets/css/learn.css?v=1">
+</head>
+<body>
+<nav class="nav"></nav>
+
+<header class="wrap hero">
+  <div class="eyebrow">03 · 11 月 4 日的晚上</div>
+  <h1>Kyle 十問</h1>
+  <p class="lede lead-big">
+    Kyle 11/4 提的十個問題，與 Audrey 整理的 25 條會議結論。
+    兩份東西是同一件事的兩面：Kyle 問，會議上答，Audrey 記下講師的修正。
+    這一頁把它們對接起來，再補上 wiki 上真正的數字。
+  </p>
+  <div class="rule-tri"><i></i><i></i><i></i></div>
+</header>
+
+<section class="wrap" style="padding-top:1rem">
+  <div class="note note-a">
+    <b>給 Timmy 的讀法</b>　每一題只有一個東西要學生背，就是最上面那排<b>深色的英文關鍵字</b>。
+    下面的 say 是照順序講的英文句子，why 是給你理解為什麼這樣排（不是給學生背的）。
+    週六演練時先遮住 say，只看關鍵字，讓他們自己把句子生出來。
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="mx-bar">
+    <button class="btn btn-sm btn-line" id="expand">全部展開</button>
+    <button class="btn btn-sm btn-line" id="kwonly">只看關鍵字</button>
+    <span class="sp"></span>
+    <span class="mx-count">10 題 · 對接 Audrey 的 25 條</span>
+  </div>
+  <div id="kyle"></div>
+</section>
+
+<section class="wrap">
+  <div class="sec-head">
+    <h2>Audrey 的 25 條</h2>
+    <p>11/4 會議紀錄，七個 section。紫色是講師的裁定，綠色是我對照 wiki 之後要補的。
+    點任何一題展開。</p>
+  </div>
+  <div class="mx-bar">
+    <button class="btn btn-sm btn-line" id="aexpand">全部展開</button>
+    <span class="sp"></span>
+    <span class="mx-count">25 題 · 其中 20 題對到 Kyle 的某一問</span>
+  </div>
+  <div id="audrey"></div>
+</section>
+
+<section class="wrap narrow">
+  <div class="sec-head"><h2>進評審室前要先問到答案的六件事</h2>
+  <p>這些不是演練題，是要去找學生確認的事實。在房間裡即興解釋任何一項都會出事。</p></div>
+  <ol class="say" id="checks" style="font-size:1rem"></ol>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Kyle Peng 的十問為 2026/11/4 口述；Audrey 的 25 條為同日會議紀錄
+    （<code>11_4 Plant Judging Notes.docx</code>）。數字與裁定之外的補註是對照
+    <a href="https://2026.igem.wiki/gems-taiwan/plant">Plants</a> 與
+    <a href="https://2026.igem.wiki/gems-taiwan/results">Results</a> 兩頁寫的。</p>
+  </div>
+</footer>
+
+<script src="assets/js/app.js?v=3"></script>
+<script src="assets/data/tonight.js?v=1"></script>
+<script>
+(function () {
+  var K = window.KYLE10, A = window.AUDREY;
+
+  function kcard(q, i) {
+    var maps = q.maps.length
+      ? '<span class="adq-k">Audrey ' + q.maps.join(', ') + '</span>' : '';
+    return '<div class="kq" id="k-' + q.id + '">' +
+      '<div class="kq-h">' +
+        '<span class="kq-n">Kyle ' + (i + 1) + '</span> ' + maps +
+        '<p class="kq-q">' + RL.esc(q.q_zh) + '</p>' +
+        '<p class="kq-qen">' + RL.esc(q.q_en) + '</p>' +
+      '</div>' +
+      '<div class="kq-b">' +
+        '<h5>關鍵字 — 學生唯一要背的東西</h5>' +
+        '<div class="kw">' + q.kw.map(function (k) {
+            return '<span>' + RL.esc(k) + '</span>'; }).join('') + '</div>' +
+        '<div class="k-rest">' +
+        '<h5>照這個順序講</h5>' +
+        '<ol class="say">' + q.say.map(function (s) {
+            return '<li>' + RL.esc(s) + '</li>'; }).join('') + '</ol>' +
+        '<h5>為什麼這樣排（給你，不是給學生背）</h5>' +
+        '<p class="why">' + RL.esc(q.why_zh) + '</p>' +
+        '<h5>手上要有的數字</h5>' +
+        '<ul class="nums">' + q.nums.map(function (s) {
+            return '<li>' + RL.esc(s) + '</li>'; }).join('') + '</ul>' +
+        '<h5>會沉船的地方</h5>' +
+        '<p class="nc-trap">' + RL.esc(q.trap_zh) + '</p>' +
+        '<h5>會議裁定</h5>' +
+        '<p class="ruling">' + RL.esc(q.ruling_zh) + '</p>' +
+        (q.check_zh ? '<h5>要先確認</h5><p class="chk">' + RL.esc(q.check_zh) + '</p>' : '') +
+        '</div>' +
+      '</div></div>';
+  }
+  document.getElementById('kyle').innerHTML = K.map(kcard).join('');
+
+  function aq(x) {
+    var k = x.kyle ? '<span class="adq-k">→ Kyle ' + x.kyle.slice(1) + '</span>' : '';
+    return '<div class="adq" id="a-' + x.id + '">' +
+      '<button class="adq-h" data-a="' + x.id + '" aria-expanded="false">' +
+        '<span class="adq-id">' + RL.esc(x.id) + '</span>' +
+        '<span class="adq-q">' + RL.esc(x.q) + '</span>' + k +
+      '</button>' +
+      '<div class="adq-b">' +
+        '<h6>關鍵字</h6><div class="kw" style="margin-bottom:.2rem">' +
+          x.kw.map(function (s) { return '<span style="font-size:.875rem">' +
+            RL.esc(s) + '</span>'; }).join('') + '</div>' +
+        '<h6>會議上的答案</h6><p class="adq-a">' + RL.esc(x.a) + '</p>' +
+        '<h6>講師裁定</h6><p class="adq-fb">' + RL.esc(x.fb) + '</p>' +
+        '<h6>對照 wiki 要補的</h6><p class="adq-nt">' + RL.esc(x.note_zh) + '</p>' +
+      '</div></div>';
+  }
+  document.getElementById('audrey').innerHTML = A.sections.map(function (s) {
+    var rows = A.qs.filter(function (x) { return x.sec === s.id; });
+    return '<div class="ad-sec"><h3>' + s.id + '　' + RL.esc(s.zh) +
+      '<span>' + RL.esc(s.en) + '</span></h3>' + rows.map(aq).join('') + '</div>';
+  }).join('');
+
+  /* 要確認的事 */
+  var checks = K.filter(function (q) { return q.check_zh; })
+    .map(function (q) { return '<li><b>Kyle ' + q.id.slice(1) + '</b>　' + RL.esc(q.check_zh) + '</li>'; });
+  checks.push('<li><b>Audrey A7</b>　相對基因表現到底做了沒有？wiki 上沒有這筆資料。</li>');
+  checks.push('<li><b>Audrey A22</b>　單位是 µg/mL 不是 mg/mL，確認學生不會講錯。</li>');
+  document.getElementById('checks').innerHTML = checks.join('');
+
+  /* 展開控制 */
+  document.getElementById('expand').addEventListener('click', function () {
+    var on = this.textContent === '全部展開';
+    document.querySelectorAll('.kq-b').forEach(function (b) {
+      b.style.display = on ? 'block' : 'none'; });
+    this.textContent = on ? '全部收起' : '全部展開';
+  });
+  document.getElementById('kwonly').addEventListener('click', function () {
+    var on = !this.classList.contains('btn-accent');
+    this.classList.toggle('btn-accent', on);
+    document.querySelectorAll('.k-rest').forEach(function (b) {
+      b.style.display = on ? 'none' : 'block'; });
+  });
+  document.getElementById('aexpand').addEventListener('click', function () {
+    var on = this.textContent === '全部展開';
+    document.querySelectorAll('.adq').forEach(function (b) { b.classList.toggle('open', on); });
+    this.textContent = on ? '全部收起' : '全部展開';
+  });
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-a]');
+    if (!b) return;
+    var box = document.getElementById('a-' + b.dataset.a);
+    var open = box.classList.toggle('open');
+    b.setAttribute('aria-expanded', String(open));
+  });
+})();
+</script>
+</body>
+</html>

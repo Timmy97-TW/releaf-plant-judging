@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>名詞解碼 · ReLEAF 植物組</title>
+<meta name="description" content="植物與蛋白的名詞，給數學背景的人用的一句話解釋，附它在我們這個專案裡卡在哪裡。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4c0 9-5.5 14-12 14-1.6 0-3-.3-4-.8' stroke='%235aaa47' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/base.css?v=2">
+<link rel="stylesheet" href="assets/css/pages.css?v=2">
+<link rel="stylesheet" href="assets/css/learn.css?v=1">
+</head>
+<body>
+<nav class="nav"></nav>
+
+<header class="wrap hero">
+  <div class="eyebrow">04 · 字彙</div>
+  <h1>名詞解碼</h1>
+  <p class="lede lead-big">
+    不講教科書，只講夠你聽懂追問、並且問回去的程度。每一條三件事：
+    評審室裡要講的<b>英文原詞</b>、一句話的意思、以及它<b>在我們這個專案裡卡在哪裡</b>。
+  </p>
+  <div class="rule-tri"><i></i><i></i><i></i></div>
+</header>
+
+<section class="wrap">
+  <div class="search">
+    <input type="search" id="q" placeholder="搜尋英文詞、中文、或說明裡的任何字 — 例如 ELISA、乙烯、分母、Fv/Fm" autocomplete="off">
+  </div>
+  <div class="mx-bar" id="f-g"></div>
+  <div class="mx-bar">
+    <button class="btn btn-sm btn-line" id="reset">全部</button>
+    <span class="sp"></span>
+    <span class="mx-count" id="count"></span>
+  </div>
+</section>
+
+<section class="wrap">
+  <div id="list"></div>
+  <p class="empty hidden" id="empty">沒有符合的詞。</p>
+</section>
+
+<section class="wrap narrow">
+  <div class="sec-head"><h2>最省力的學法</h2></div>
+  <div class="steps">
+    <div class="step"><div>
+      <h3>先只讀「統計與設計」那一組</h3>
+      <p class="lede-sm">那是你的母語，而且 Kyle 第 3 題與 Audrey 第 16 到 18 題全在那一組。
+      讀完你就有能力判斷其他每一條的證據強度。</p>
+    </div></div>
+    <div class="step"><div>
+      <h3>再讀「菌與蛋白」</h3>
+      <p class="lede-sm">Kyle 的第 1、7、8、10 題的字彙都在這裡。His-tag、TB 對 LB、競爭型 ELISA
+      這三條讀懂，第 10 題就答得完整。</p>
+    </div></div>
+    <div class="step"><div>
+      <h3>「荷爾蒙與機制」只要記因果鏈的方向</h3>
+      <p class="lede-sm">逆境 → 乙烯上升 → 傷害；ACCD 把前驅物 ACC 抽走 → 乙烯做不出來。
+      不需要記分子結構，記箭頭就夠。</p>
+    </div></div>
+    <div class="step"><div>
+      <h3>「葉綠素與氧化傷害」記哪些我們沒量</h3>
+      <p class="lede-sm">MDA、Fv/Fm、Na⁺/K⁺、乾重、RWC —— 全部沒量。Kyle 第 5 題問的就是這一排，
+      而能一口氣報出五個沒做的指標並說出原因，比報兩個好得多。</p>
+    </div></div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>名詞的通用定義是標準教科書內容；「在評審室裡」那一欄是對照
+    <a href="https://2026.igem.wiki/gems-taiwan/plant">Plants</a> 與
+    <a href="https://2026.igem.wiki/gems-taiwan/results">Results</a> 兩頁寫的，講的是我們自己的狀況。</p>
+  </div>
+</footer>
+
+<script src="assets/js/app.js?v=3"></script>
+<script src="assets/data/decoder.js?v=1"></script>
+<script>
+(function () {
+  var D = window.DECODER, G = window.DEC_GROUPS;
+  var sel = '', term = '';
+
+  document.getElementById('f-g').innerHTML =
+    '<span class="mx-count" style="min-width:5.5rem">分組</span>' +
+    G.map(function (g) {
+      var n = D.filter(function (x) { return x.g === g.id; }).length;
+      return '<button class="btn btn-sm btn-line" data-g="' + g.id + '">' + RL.esc(g.zh) +
+             ' <span style="opacity:.55">' + n + '</span></button>';
+    }).join('');
+
+  function item(x) {
+    return '<div class="dki"><div><span class="dki-t">' + RL.esc(x.t) + '</span>' +
+      '<span class="dki-zh">' + RL.esc(x.zh) + '</span></div>' +
+      '<p class="dki-one">' + RL.esc(x.one) + '</p>' +
+      '<div class="dki-room">' + RL.esc(x.room) + '</div></div>';
+  }
+
+  function paint() {
+    document.querySelectorAll('[data-g]').forEach(function (b) {
+      b.classList.toggle('btn-accent', sel === b.dataset.g);
+    });
+    var t = term.trim().toLowerCase();
+    var list = D.filter(function (x) {
+      if (sel && x.g !== sel) return false;
+      if (!t) return true;
+      return (x.t + ' ' + x.zh + ' ' + x.one + ' ' + x.room).toLowerCase().indexOf(t) >= 0;
+    });
+    var out = '';
+    G.forEach(function (g) {
+      var rows = list.filter(function (x) { return x.g === g.id; });
+      if (!rows.length) return;
+      out += '<div class="ng"><div class="ng-h"><h2>' + RL.esc(g.zh) +
+             ' <span style="font-size:.8125rem;color:var(--faint);font-weight:400">' +
+             RL.esc(g.en) + '</span></h2><p>' + RL.esc(g.note_zh) + '</p></div>' +
+             '<div class="dk">' + rows.map(item).join('') + '</div></div>';
+    });
+    document.getElementById('list').innerHTML = out;
+    document.getElementById('empty').classList.toggle('hidden', list.length > 0);
+    document.getElementById('count').textContent = list.length + ' / ' + D.length + ' 個詞';
+  }
+
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-g]');
+    if (b) { sel = (sel === b.dataset.g) ? '' : b.dataset.g; paint(); }
+  });
+  document.getElementById('q').addEventListener('input', function () { term = this.value; paint(); });
+  document.getElementById('reset').addEventListener('click', function () {
+    sel = ''; term = ''; document.getElementById('q').value = ''; paint();
+  });
+
+  paint();
+})();
+</script>
+</body>
+</html>
