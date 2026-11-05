@@ -105,7 +105,7 @@ window.MATRIX = [
  n:'—', nbio:1, days:'—', readout_zh:'同上', verdict:'qual',
  says_zh:'CH 這一組是全站做到三次的唯一設計。',
  cannot_zh:'wiki 上 t3 的數字不完整，trial 編號在表格與圖說之間也對不上。',
- trap_zh:'表格寫 trial 1 / trial 3，圖說寫 trial 2。先跟學生對齊編號再進評審室。'},
+ trap_zh:'表格寫 trial 1 / trial 3，圖說寫 trial 2。先跟濕式組對齊編號再進評審室。'},
 
 /* ─────────────────────────── 瓊脂 · 鹽 · ACCD */
 {id:'A10', sys:'agar', stress:'salt', agent:'accd', set:'Set 8（pretest）', date:'8 月',
@@ -176,7 +176,7 @@ window.MATRIX = [
  n:'—', nbio:0, days:'—', readout_zh:'—', verdict:'planned',
  says_zh:'什麼都不能說。wiki 寫了方法，沒有結果。',
  cannot_zh:'這一組不存在於結果裡。',
- trap_zh:'熱逆境的 protocol 清單寫「ACC deaminase 1 pretest + 1 set 2 trials、LEA14 1 set、BoPEP4 1 set 2 trials」，但結果頁只有 ACCD。如果評審照清單數，會問另外三組在哪。答案是：做了但沒有上 wiki，或沒有做完 — 這件事去問學生，不要在房間裡猜。'},
+ trap_zh:'熱逆境的 protocol 清單寫「ACC deaminase 1 pretest + 1 set 2 trials、LEA14 1 set、BoPEP4 1 set 2 trials」，但結果頁只有 ACCD。如果評審照清單數，會問另外三組在哪。答案是：做了但沒有上 wiki，或沒有做完 — 這件事去跟濕式組確認，不要在房間裡猜。'},
 
 {id:'H4', sys:'agar', stress:'heat', agent:'bopep', set:'（清單上有，結果沒有）', date:'—',
  label_zh:'BoPep4 熱逆境', label_en:'BoPep4 heat',

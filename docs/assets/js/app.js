@@ -1,6 +1,6 @@
 /* Shared chrome: nav, language toggle, small helpers. */
 (function () {
-  /* 學習軌道 — 2026/11/5 為 Timmy 重做的五頁，放第一排。 */
+  /* 學習軌道 — 第一排。 */
   const PAGES = [
     { href: 'index.html',    en: 'Start',    zh: '開始' },
     { href: 'matrix.html',   en: 'Matrix',   zh: '實驗矩陣' },
@@ -10,7 +10,7 @@
     { href: 'drill.html',    en: 'Drill',    zh: '演練' }
   ];
 
-  /* 10/25 建的那些頁，保留在第二排。 */
+  /* 深讀 — 10/25 建的那些頁，收在下拉面板裡。 */
   const DEEP = [
     { href: 'facts.html',     en: 'Facts',        zh: '事實庫' },
     { href: 'figures.html',   en: 'Figures',      zh: '圖像記憶' },
@@ -18,7 +18,7 @@
     { href: 'qa.html',        en: 'Q&A 117',      zh: '問答 117' },
     { href: 'results.html',   en: 'Results',      zh: '結果詮釋' },
     { href: 'rigour.html',    en: 'Boundary',     zh: '邊界標準' },
-    { href: 'kyle.html',      en: "Kyle 10/24",   zh: '博後五問' },
+    { href: 'kyle.html',      en: 'Kyle 10/24',   zh: '博後五問' },
     { href: 'deep.html',      en: 'Deep dive',    zh: '五問深讀' },
     { href: 'answer.html',    en: 'Answer shape', zh: '答題架構' },
     { href: 'redlines.html',  en: 'Red lines',    zh: '紅線' }
@@ -30,29 +30,63 @@
     '<path d="M20 4c0 9-5.5 14-12 14-1.6 0-3-.3-4-.8" stroke="#5aaa47" stroke-width="2" stroke-linecap="round"/>' +
     '<path d="M4 20c2-7 7-11 13-12" stroke="#0167ef" stroke-width="2" stroke-linecap="round"/></svg>';
 
+  function bil(en, zh) {
+    return '<span class="only-en">' + en + '</span><span class="only-zh">' + zh + '</span>';
+  }
+  function link(p) {
+    return '<a href="' + p.href + '"' + (p.href === here ? ' aria-current="page"' : '') + '>' +
+      bil(p.en, p.zh) + '</a>';
+  }
+
   function nav() {
     const el = document.querySelector('.nav');
     if (!el) return;
+    const chev = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" class="chev">' +
+      '<path d="M6 9.5 12 15.5 18 9.5" stroke="currentColor" stroke-width="2.1" ' +
+      'stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    const burger = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
+      '<path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+
     el.innerHTML =
       '<div class="nav-in">' +
-      '<a class="nav-brand" href="index.html">' + leaf +
-      '<span class="only-en">ReLEAF · Plants</span><span class="only-zh">ReLEAF · 植物組</span></a>' +
-      '<div class="nav-two">' +
-      '<div class="nav-links">' +
-      PAGES.map(p => '<a href="' + p.href + '"' + (p.href === here ? ' aria-current="page"' : '') +
-        '><span class="only-en">' + p.en + '</span><span class="only-zh">' + p.zh + '</span></a>').join('') +
+        '<a class="nav-brand" href="index.html">' + leaf +
+          bil('ReLEAF <i>Plants</i>', 'ReLEAF <i>植物組</i>') + '</a>' +
+        '<div class="nav-links">' + PAGES.map(link).join('') + '</div>' +
+        '<button type="button" class="nav-more" aria-expanded="false" aria-controls="nav-pop">' +
+          bil('Deep', '深讀') + chev + '</button>' +
+        '<div class="lang" role="group" aria-label="Language">' +
+          '<button type="button" data-lang="en">EN</button>' +
+          '<button type="button" data-lang="zh">中</button>' +
+        '</div>' +
+        '<button type="button" class="nav-burger" aria-expanded="false" aria-controls="nav-pop">' +
+          burger + '<span class="sr">Menu</span></button>' +
       '</div>' +
-      '<div class="nav-deep"><span class="lbl">深讀</span>' +
-      DEEP.map(p => '<a href="' + p.href + '"' + (p.href === here ? ' aria-current="page"' : '') +
-        '><span class="only-en">' + p.en + '</span><span class="only-zh">' + p.zh + '</span></a>').join('') +
-      '</div>' +
-      '</div>' +
-      '<div class="lang" role="group" aria-label="Language">' +
-      '<button type="button" data-lang="en">EN</button>' +
-      '<button type="button" data-lang="zh">中</button>' +
+      '<div class="nav-pop" id="nav-pop" hidden><div class="nav-pop-in">' +
+        '<div class="nav-pop-g is-primary"><h6>' + bil('Learning track', '學習軌道') + '</h6>' +
+          '<div class="nav-pop-l">' + PAGES.map(link).join('') + '</div></div>' +
+        '<div class="nav-pop-g"><h6>' + bil('Deeper reading', '深讀') + '</h6>' +
+          '<div class="nav-pop-l">' + DEEP.map(link).join('') + '</div></div>' +
       '</div></div>';
+
     el.querySelectorAll('.lang button').forEach(b =>
       b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+    const pop = el.querySelector('.nav-pop');
+    const togs = el.querySelectorAll('.nav-more, .nav-burger');
+    function shut() {
+      pop.hidden = true;
+      togs.forEach(t => t.setAttribute('aria-expanded', 'false'));
+    }
+    togs.forEach(t => t.addEventListener('click', function (e) {
+      e.stopPropagation();
+      const open = pop.hidden;
+      pop.hidden = !open;
+      togs.forEach(x => x.setAttribute('aria-expanded', String(open)));
+    }));
+    document.addEventListener('click', function (e) {
+      if (!pop.hidden && !e.target.closest('.nav')) shut();
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') shut(); });
   }
 
   function setLang(l) {
@@ -99,6 +133,19 @@
              '<span class="only-zh">' + this.esc(zh || en) + '</span>';
     },
     lang() { return document.documentElement.lang || 'en'; },
+
+    /* Unescaped bilingual wrapper, for markup built elsewhere. */
+    biH(en, zh) {
+      return '<span class="only-en">' + (en || zh || '') + '</span>' +
+             '<span class="only-zh">' + (zh || en || '') + '</span>';
+    },
+    /* A bilingual <ul>/<ol>: two lists, one shown. */
+    biList(tag, cls, en, zh) {
+      const one = (arr) => '<' + tag + ' class="' + (cls ? cls + ' ' : '') + '">' +
+        (arr || []).map(s => '<li>' + this.esc(s) + '</li>').join('') + '</' + tag + '>';
+      return '<span class="only-en blk">' + one(en && en.length ? en : zh) + '</span>' +
+             '<span class="only-zh blk">' + one(zh && zh.length ? zh : en) + '</span>';
+    },
     shuffle(a) { const x = a.slice(); for (let i = x.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [x[i], x[j]] = [x[j], x[i]]; } return x; },
 
     /* Citation chips. Keys index window.LIT; an unknown key still prints. */

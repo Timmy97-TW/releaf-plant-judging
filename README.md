@@ -6,18 +6,22 @@ Judging preparation for the students holding the **plant seat** in the ReLEAF
 
 **Live:** https://timmy97-tw.github.io/releaf-plant-judging/
 
-Chinese explanation, English keywords. The narrative, the mechanism and the
-reasoning are in 繁體中文 because that is what the instructor reads fastest; the
-keywords, the proper nouns and the sentences to say out loud stay in English
-because that is what gets said in the room. The ten pages built on 25 October are
-bilingual and kept. Static HTML, no build step — open `docs/index.html` or serve
-the `docs/` folder.
+Fully bilingual. Every page carries the whole argument in both 繁體中文 and
+English and the EN / 中 switch in the navigation swaps the lot, keywords, numbers,
+rulings and the seven teaching diagrams included — the diagrams exist as two SVGs
+each, same geometry, different labels. Keywords, proper nouns and the sentences to
+say out loud stay in English in both modes, because that is what gets said in the
+room. Static HTML, no build step — open `docs/index.html` or serve the `docs/`
+folder.
 
-## The learning track (5 November)
+Navigation is one row of six: the learning track, plus a **Deep** panel holding the
+eleven pages of 25 October. Below 880 px both collapse into one menu.
 
-Rebuilt for the PI, who is learning the plant work from zero in two days in order
-to drill the students on Saturday 7 November. These five sit on the first row of
-the navigation.
+## The learning track
+
+Written for anyone coming to the plant work cold — instructor or student — and
+organised around the evidence structure rather than the biochemistry. These five
+sit on the first row of the navigation.
 
 | Page | What it is |
 | --- | --- |
@@ -26,9 +30,9 @@ the navigation.
 | `numbers.html` | 21 numbers, each with its unit of inference, its control, the arithmetic and the trap. Carries the full ELISA table with the empty-host row marked, and five diagrams drawn here: the dose ceiling, the normalisation flip, the two ELISA problems, why forty seedlings are n = 1, and where the evidence chain breaks |
 | `tonight.html` | Kyle Peng's ten questions of 4 November, each with the keyword flow, the English sentences in the order to say them, the numbers to have ready, the trap, and the instructor's ruling from that evening's meeting. Then Audrey's 25 minuted questions in their seven sections, each with the meeting's answer, the ruling, and what the wiki says that is sharper. Ends with the six things to confirm with the students before the room |
 | `decoder.html` | 71 terms for someone who does not do biology: the English term, one line of plain meaning, and where it is stuck in this project. Grouped so the statistics and the protein groups can be read first |
-| `drill.html` | Keyword-first drill over three decks — Kyle's 10, Audrey's 25, and the 117 from October — on a 90-second clock. Say the keywords out loud, then open the answer. Wrong answers collect into a shaky list |
+| `drill.html` | Keyword-first drill over three decks — Kyle's 10, Audrey's 25, and the 117 from October — on a 90-second clock. Say the keywords out loud, then open the answer. Missed questions collect into a list, and the page closes with a ninety-minute drill plan for a pair |
 
-## The ten pages from 25 October (kept, second nav row)
+## The ten pages from 25 October (kept, under "Deep")
 
 | Page | What it is |
 | --- | --- |
@@ -49,7 +53,10 @@ The learning track was written on 5 November against the live frozen wiki, read
 end to end again on that date, plus Kyle Peng's ten questions of 4 November and
 Audrey's minute of the meeting the same evening (`11_4 Plant Judging Notes.docx`).
 Where the minute and the published numbers disagree, the numbers win and the page
-says so.
+says so. The English of 5 November is a parallel edition, not a gloss: it lives in
+`docs/assets/data/en-*.js`, keyed to the Chinese by run id, number id, term or
+question id, and `en-draw.js` is generated from `draw.js` by a label map so the two
+sets of diagrams cannot drift apart geometrically.
 
 Everything measured is from the frozen ReLEAF wiki — the
 [Plants](https://2026.igem.wiki/gems-taiwan/plant) and

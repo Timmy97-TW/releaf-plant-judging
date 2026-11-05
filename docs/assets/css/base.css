@@ -140,7 +140,7 @@ section + section { border-top: 1px solid var(--rule-soft); }
 .g3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
 .g4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
 @media (max-width: 900px) { .g3, .g4 { grid-template-columns: repeat(2, minmax(0,1fr)); } }
-@media (max-width: 620px) { .g2, .g3, .g4 { grid-template-columns: 1fr; } }
+@media (max-width: 620px) { .g2, .g3, .g4 { grid-template-columns: minmax(0,1fr); } }
 
 /* ── Cards ── */
 .card {

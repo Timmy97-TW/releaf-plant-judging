@@ -4,23 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>演練 · ReLEAF 植物組</title>
-<meta name="description" content="關鍵字優先的問答演練。先說出關鍵字，再開答案。可選今晚的 35 題或全部 152 題。">
+<meta name="description" content="關鍵字優先的問答演練。先說出關鍵字，再開答案。可選 11/4 的 35 題或全部題庫。">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4c0 9-5.5 14-12 14-1.6 0-3-.3-4-.8' stroke='%235aaa47' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/css/base.css?v=2">
+<link rel="stylesheet" href="assets/css/base.css?v=3">
 <link rel="stylesheet" href="assets/css/pages.css?v=2">
-<link rel="stylesheet" href="assets/css/learn.css?v=1">
+<link rel="stylesheet" href="assets/css/learn.css?v=5">
 </head>
 <body>
 <nav class="nav"></nav>
 
 <header class="wrap hero">
-  <div class="eyebrow">05 · 演練</div>
-  <h1>演練</h1>
+  <div class="eyebrow"><span class="only-en">05 · Drill</span><span class="only-zh">05 · 演練</span></div>
+  <h1><span class="only-en">Drill</span><span class="only-zh">演練</span></h1>
   <p class="lede lead-big">
-    規則只有一條：<b>先把關鍵字說出口，再按開啟</b>。
+    <span class="only-en">One rule: <b>say the keywords out loud before opening the answer</b>. Thinking them does not count —
+    what has to come out of your mouth in the room has to come out of your mouth here.
+    <span class="kbd">space</span> opens the answer, <span class="kbd">&rarr;</span> next,
+    <span class="kbd">1</span> got it, <span class="kbd">2</span> missed it.</span>
+    <span class="only-zh">規則只有一條：<b>先把關鍵字說出口，再開答案</b>。
     默念不算 —— 評審室裡要出聲的，練習時就要出聲。
-    <span class="kbd">空白</span> 開答案，<span class="kbd">→</span> 下一題，
-    <span class="kbd">1</span> 答出來了，<span class="kbd">2</span> 沒答出來。
+    <span class="kbd">空白</span> 開答案，<span class="kbd">&rarr;</span> 下一題，
+    <span class="kbd">1</span> 答出來了，<span class="kbd">2</span> 沒答出來。</span>
   </p>
   <div class="rule-tri"><i></i><i></i><i></i></div>
 </header>
@@ -28,9 +32,10 @@
 <section class="wrap">
   <div class="mx-bar" id="decks"></div>
   <div class="mx-bar">
-    <button class="btn btn-sm btn-line" id="shuffle">重新洗牌</button>
-    <label style="font-size:.8125rem;color:var(--muted);display:flex;align-items:center;gap:.35rem">
-      <input type="checkbox" id="clockon" checked> 90 秒計時
+    <button class="btn btn-sm btn-line" id="shuffle"><span class="only-en">Reshuffle</span><span class="only-zh">重新洗牌</span></button>
+    <label style="font-size:.8125rem;color:var(--muted);display:flex;align-items:center;gap:.4rem">
+      <input type="checkbox" id="clockon" checked>
+      <span class="only-en">90-second clock</span><span class="only-zh">90 秒計時</span>
     </label>
     <span class="sp"></span>
     <span class="mx-count" id="score"></span>
@@ -47,95 +52,119 @@
     <p class="dr-qen" id="qen"></p>
 
     <div class="dr-hide">
-      <button class="btn btn-accent" id="reveal">說完了，開答案　<span class="kbd" style="background:rgba(255,255,255,.2);border-color:transparent;color:#fff">空白</span></button>
+      <button class="btn btn-accent" id="reveal"></button>
     </div>
 
     <div class="dr-rev" id="rev"></div>
   </div>
 
-  <div class="mx-bar" style="margin-top:1rem">
-    <button class="btn btn-sm btn-accent" id="got">1 · 答出來了</button>
-    <button class="btn btn-sm btn-line" id="missed">2 · 沒答出來</button>
+  <div class="mx-bar" style="margin-top:1.1rem">
+    <button class="btn btn-sm btn-accent" id="got"><span class="only-en">1 · Got it</span><span class="only-zh">1 · 答出來了</span></button>
+    <button class="btn btn-sm btn-line" id="missed"><span class="only-en">2 · Missed it</span><span class="only-zh">2 · 沒答出來</span></button>
     <span class="sp"></span>
-    <button class="btn btn-sm btn-line" id="next">下一題 →</button>
+    <button class="btn btn-sm btn-line" id="next"><span class="only-en">Next &rarr;</span><span class="only-zh">下一題 &rarr;</span></button>
   </div>
 </section>
 
 <section class="wrap narrow" id="shaky-wrap" style="display:none">
-  <div class="sec-head"><h2>沒答出來的</h2><p>這一輪標 2 的題。週六就從這一份開始。</p></div>
+  <div class="sec-head"><h2><span class="only-en">The ones that were missed</span><span class="only-zh">沒答出來的</span></h2>
+  <p><span class="only-en">Everything marked 2 this round. Start the next round from this list.</span>
+     <span class="only-zh">這一輪標 2 的題。下一輪就從這一份開始。</span></p></div>
   <ol class="say" id="shaky" style="font-size:.9375rem"></ol>
 </section>
 
 <section class="wrap narrow">
-  <div class="sec-head"><h2>週六怎麼帶學生</h2></div>
+  <div class="sec-head"><h2><span class="only-en">Ninety minutes, in four rounds</span><span class="only-zh">九十分鐘，四輪</span></h2>
+  <p><span class="only-en">It works alone and it works better in pairs, one asking and one answering, swapping each round.</span>
+     <span class="only-zh">一個人練可以，兩個人一問一答更好，每一輪交換。</span></p></div>
   <div class="route">
     <div class="route-i"><div>
-      <span class="mins">15 分</span>
-      <h3>先只跑關鍵字，不要讓他們講完整句子</h3>
-      <p>選「今晚 35 題」，開計時。他們只要說出三到四個英文關鍵字就算過。
-      這一輪的目的是找出哪幾題連關鍵字都生不出來。</p>
+      <span class="mins"><span class="only-en">15 min</span><span class="only-zh">15 分</span></span>
+      <h3><span class="only-en">Keywords only — no full sentences yet</span><span class="only-zh">先只跑關鍵字，不要講完整句子</span></h3>
+      <p><span class="only-en">Take the 4 November deck with the clock on. Three or four English keywords is a pass.
+      This round exists to find the questions where the keywords will not come at all.</span>
+      <span class="only-zh">選「11/4 的 35 題」，開計時。說得出三到四個英文關鍵字就算過。
+      這一輪的目的是找出哪幾題連關鍵字都生不出來。</span></p>
     </div></div>
     <div class="route-i"><div>
-      <span class="mins">25 分</span>
-      <h3>只對「沒答出來」的那幾題講完整句子</h3>
-      <p>關鍵字有了之後，句子是自然長出來的。對著 Kyle 十問那一頁的 say 順序念一次，
-      然後蓋住自己講。</p>
+      <span class="mins"><span class="only-en">25 min</span><span class="only-zh">25 分</span></span>
+      <h3><span class="only-en">Full sentences, but only for the missed ones</span><span class="only-zh">只對「沒答出來」的那幾題講完整句子</span></h3>
+      <p><span class="only-en">Once the keywords are there the sentences grow by themselves. Read the <b>say</b> order on the
+      Kyle's ten page once, then cover it and say it.</span>
+      <span class="only-zh">關鍵字有了之後，句子是自然長出來的。對著 Kyle 十問那一頁的 say 順序念一次，
+      然後蓋住自己講。</span></p>
     </div></div>
     <div class="route-i"><div>
-      <span class="mins">20 分</span>
-      <h3>你打斷他們</h3>
-      <p>講到第二句時插話問一個追問。刁難題考的不是知識，是能不能維持同樣的音量與速度。
-      最好的追問都寫在每一題的「陷阱」那一欄。</p>
+      <span class="mins"><span class="only-en">20 min</span><span class="only-zh">20 分</span></span>
+      <h3><span class="only-en">Interrupt on the second sentence</span><span class="only-zh">第二句時插話打斷</span></h3>
+      <p><span class="only-en">A hostile follow-up does not test knowledge; it tests whether the volume and the pace hold.
+      The best follow-ups are already written in the <b>trap</b> field of every card.</span>
+      <span class="only-zh">講到第二句時插話問一個追問。刁難題考的不是知識，是能不能維持同樣的音量與速度。
+      最好的追問都寫在每一題的「陷阱」那一欄。</span></p>
     </div></div>
     <div class="route-i"><div>
-      <span class="mins">10 分</span>
-      <h3>最後只練三句</h3>
-      <p>「40 株共用一個盤，所以生物重複是 1。」
+      <span class="mins"><span class="only-en">10 min</span><span class="only-zh">10 分</span></span>
+      <h3><span class="only-en">Finish on the three sentences</span><span class="only-zh">最後只練三句</span></h3>
+      <p><span class="only-en">"Forty seedlings, but they share one plate, so the biological replicate is one."
+      "The empty host, WB800 with no plasmid, reads about five micrograms per millilitre on the same ELISA."
+      "Yes, TB medium does affect plant growth. That is exactly why our working dilution is one in forty."
+      Get those three out without stumbling and the session holds.</span>
+      <span class="only-zh">「40 株共用一個盤，所以生物重複是 1。」
       「空宿主 WB800 自己就讀 4.5 到 5.5 µg/mL。」
       「Yes, TB 確實影響植物生長，這就是我們把劑量定在 1/40 的原因。」
-      這三句講不卡，整場就穩了。</p>
+      這三句講不卡，整場就穩了。</span></p>
     </div></div>
   </div>
 </section>
 
 <footer class="foot">
   <div class="wrap">
-    <p>牌組來自 Kyle 11/4 的十問、Audrey 的 25 條會議紀錄，以及 10/25 建的 117 題題庫。</p>
+    <p><span class="only-en">The decks come from Kyle's ten of 4 November, Audrey's twenty-five-point minute of the same day,
+    and the 117-question bank of 25 October.</span>
+    <span class="only-zh">牌組來自 Kyle 11/4 的十問、Audrey 的 25 條會議紀錄，以及 10/25 建的 117 題題庫。</span></p>
   </div>
 </footer>
 
-<script src="assets/js/app.js?v=3"></script>
+<script src="assets/js/app.js?v=5"></script>
 <script src="assets/data/lit.js?v=1"></script>
 <script src="assets/data/tonight.js?v=1"></script>
+<script src="assets/data/en-tonight.js?v=1"></script>
 <script src="assets/data/qa-core.js?v=1"></script>
 <script src="assets/data/qa-probe.js?v=1"></script>
 <script src="assets/data/qa-hard.js?v=1"></script>
 <script src="assets/data/qa-results.js?v=1"></script>
 <script>
 (function () {
-  /* ── 把三種來源收成一種牌 ── */
+  var KE = window.KYLE_EN || {}, AE = window.AUD_EN || {};
+  var NOFB = window.AUD_EN_NOFB || '(no instructor feedback at the meeting)';
   var cards = [];
 
   window.KYLE10.forEach(function (q, i) {
+    var e = KE[q.id] || {};
     cards.push({
       deck: 'kyle', id: 'Kyle ' + (i + 1),
-      q: q.q_zh, qen: q.q_en, kw: q.kw,
-      body: '<h5>照這個順序講</h5><ol class="say">' +
+      q: RL.bi(q.q_en, q.q_zh), qen: RL.biH('', RL.esc(q.q_en)), kw: q.kw,
+      body: '<h5>' + RL.bi('Say it in this order', '照這個順序講') + '</h5><ol class="say">' +
             q.say.map(function (s) { return '<li>' + RL.esc(s) + '</li>'; }).join('') + '</ol>' +
-            '<h5>陷阱</h5><p class="nc-trap">' + RL.esc(q.trap_zh) + '</p>' +
-            '<h5>會議裁定</h5><p class="ruling">' + RL.esc(q.ruling_zh) + '</p>',
+            '<h5>' + RL.bi('What sinks it', '陷阱') + '</h5>' +
+            '<p class="nc-trap">' + RL.bi(e.trap || q.trap_zh, q.trap_zh) + '</p>' +
+            '<h5>' + RL.bi('The meeting ruling', '會議裁定') + '</h5>' +
+            '<p class="ruling">' + RL.bi(e.ruling || q.ruling_zh, q.ruling_zh) + '</p>',
       src: 'Kyle Peng · 2026/11/4'
     });
   });
 
   window.AUDREY.qs.forEach(function (x) {
+    var fb = /[一-鿿]/.test(x.fb) ? RL.bi(NOFB, x.fb) : RL.esc(x.fb);
     cards.push({
       deck: 'audrey', id: x.id,
-      q: x.q, qen: '', kw: x.kw,
-      body: '<h5>會議上的答案</h5><p style="font-size:.9375rem">' + RL.esc(x.a) + '</p>' +
-            '<h5>講師裁定</h5><p class="adq-fb">' + RL.esc(x.fb) + '</p>' +
-            '<h5>對照 wiki 要補的</h5><p class="adq-nt">' + RL.esc(x.note_zh) + '</p>',
-      src: 'Audrey 會議紀錄 · 2026/11/4 · section ' + x.sec
+      q: RL.esc(x.q), qen: '', kw: x.kw,
+      body: '<h5>' + RL.bi('The answer given at the meeting', '會議上的答案') + '</h5>' +
+            '<p style="font-size:.9375rem;line-height:1.72">' + RL.esc(x.a) + '</p>' +
+            '<h5>' + RL.bi('Instructor ruling', '講師裁定') + '</h5><p class="adq-fb">' + fb + '</p>' +
+            '<h5>' + RL.bi('What the wiki adds', '對照 wiki 要補的') + '</h5>' +
+            '<p class="adq-nt">' + RL.bi(AE[x.id] || x.note_zh, x.note_zh) + '</p>',
+      src: 'Audrey minute · 2026/11/4 · section ' + x.sec
     });
   });
 
@@ -143,29 +172,35 @@
     .forEach(function (q) {
       cards.push({
         deck: 'bank', id: q.id,
-        q: q.q_zh || q.q_en, qen: q.q_en, kw: null,
+        q: RL.bi(q.q_en || q.q_zh, q.q_zh || q.q_en),
+        qen: RL.biH('', RL.esc(q.q_en || '')), kw: null,
         body: RL.qaBody(q),
-        src: '10/25 題庫 · ' + (q.kind || '') + ' · ' + (q.topic || '')
+        src: '25 Oct bank · ' + (q.kind || '') + ' · ' + (q.topic || '')
       });
     });
 
   var DECKS = [
-    { id: 'tonight', zh: '今晚 35 題', test: function (c) { return c.deck !== 'bank'; } },
-    { id: 'kyle',    zh: 'Kyle 十問',  test: function (c) { return c.deck === 'kyle'; } },
-    { id: 'audrey',  zh: 'Audrey 25', test: function (c) { return c.deck === 'audrey'; } },
-    { id: 'bank',    zh: '10/25 題庫', test: function (c) { return c.deck === 'bank'; } },
-    { id: 'all',     zh: '全部',       test: function () { return true; } }
+    { id: 'tonight', en: '4 Nov, 35',  zh: '11/4 的 35 題', test: function (c) { return c.deck !== 'bank'; } },
+    { id: 'kyle',    en: "Kyle's ten", zh: 'Kyle 十問',     test: function (c) { return c.deck === 'kyle'; } },
+    { id: 'audrey',  en: 'Audrey 25',  zh: 'Audrey 25',     test: function (c) { return c.deck === 'audrey'; } },
+    { id: 'bank',    en: '25 Oct bank', zh: '10/25 題庫',   test: function (c) { return c.deck === 'bank'; } },
+    { id: 'all',     en: 'Everything', zh: '全部',          test: function () { return true; } }
   ];
 
   var deck = 'tonight', order = [], i = 0, shown = false;
   var got = 0, missed = 0, shaky = [];
   var t = 90, timer = null;
 
+  document.getElementById('reveal').innerHTML =
+    RL.bi('Said it — open the answer', '說完了，開答案') +
+    '<span class="kbd" style="background:rgba(255,255,255,.2);border-color:transparent;color:#fff">' +
+    RL.bi('space', '空白') + '</span>';
+
   document.getElementById('decks').innerHTML =
-    '<span class="mx-count" style="min-width:5.5rem">牌組</span>' +
+    '<span class="mx-lbl">' + RL.bi('Deck', '牌組') + '</span>' +
     DECKS.map(function (d) {
       var n = cards.filter(d.test).length;
-      return '<button class="btn btn-sm btn-line" data-d="' + d.id + '">' + RL.esc(d.zh) +
+      return '<button class="btn btn-sm btn-line" data-d="' + d.id + '">' + RL.bi(d.en, d.zh) +
              ' <span style="opacity:.55">' + n + '</span></button>';
     }).join('');
 
@@ -194,28 +229,29 @@
     shown = false;
     document.getElementById('dr').classList.remove('show');
     if (!c) {
-      document.getElementById('q').textContent = '這一輪跑完了。';
-      document.getElementById('qen').textContent = '';
+      document.getElementById('q').innerHTML = RL.bi('That is the round.', '這一輪跑完了。');
+      document.getElementById('qen').innerHTML = '';
       document.getElementById('rev').innerHTML = '';
       if (shaky.length) {
         document.getElementById('shaky-wrap').style.display = '';
         document.getElementById('shaky').innerHTML = shaky.map(function (s) {
-          return '<li>' + RL.esc(s) + '</li>'; }).join('');
+          return '<li>' + s + '</li>'; }).join('');
       }
       clearInterval(timer);
       return;
     }
     document.getElementById('pos').textContent = (i + 1) + ' / ' + order.length + ' · ' + c.id;
-    document.getElementById('q').textContent = c.q;
-    document.getElementById('qen').textContent = c.qen || '';
+    document.getElementById('q').innerHTML = c.q;
+    document.getElementById('qen').innerHTML = c.qen || '';
     document.getElementById('rev').innerHTML =
-      (c.kw ? '<h5 style="margin:0 0 .45rem;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--faint)">關鍵字</h5>' +
+      (c.kw ? '<h5>' + RL.bi('Keywords', '關鍵字') + '</h5>' +
         '<div class="kw" style="margin-bottom:.4rem">' +
         c.kw.map(function (k) { return '<span>' + RL.esc(k) + '</span>'; }).join('') + '</div>' : '') +
-      c.body + '<p class="dr-src" style="margin-top:.9rem">' + RL.esc(c.src) + '</p>';
+      c.body + '<p class="dr-src">' + RL.esc(c.src) + '</p>';
     document.getElementById('prog').style.width =
       Math.round(i / order.length * 100) + '%';
-    document.getElementById('score').textContent = '答出 ' + got + ' · 沒答出 ' + missed;
+    document.getElementById('score').innerHTML =
+      RL.bi('got ' + got + ' · missed ' + missed, '答出 ' + got + ' · 沒答出 ' + missed);
 
     clearInterval(timer);
     t = 90; document.getElementById('clk').textContent = '1:30';
@@ -227,7 +263,7 @@
   function next() { i++; show(); }
   function mark(ok) {
     var c = order[i];
-    if (c) { if (ok) got++; else { missed++; shaky.push(c.id + '　' + c.q); } }
+    if (c) { if (ok) got++; else { missed++; shaky.push('<b>' + RL.esc(c.id) + '</b><span class="sw"></span>' + c.q); } }
     next();
   }
 

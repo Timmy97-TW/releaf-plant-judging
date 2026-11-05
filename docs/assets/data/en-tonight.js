@@ -1,0 +1,125 @@
+/* English for Kyle's ten and Audrey's twenty-five.
+ * The questions, keywords, sentences and the meeting answers were written in
+ * English already; what is here is everything that was only in Chinese.
+ */
+
+window.KYLE_EN = {
+
+K1:{why:'Four moves, and the order matters. The first fixes the purpose of the modifications on production and secretion — the instructor’s first note in Audrey’s minute — because once you say it was to raise protection you have to prove protection rose, and there is no such data. The second names the versions. The third volunteers that the result went the other way, which earns marks rather than losing them. The fourth adds immediately that the comparison is not clean either; said together the two read as judgment, while the third alone reads as surrender.',
+ nums:['Per OD600: Csn-ACCD 29.881 / 21.242; AcdS 2.1 19.540 / 15.525 (8 h / 12 h)',
+   'Raw µg/mL: Csn-ACCD 12.072 / 13.446; AcdS 2.1 9.458 / 8.197',
+   'Ratios 29.881 ÷ 19.540 = 1.529; 21.242 ÷ 15.525 = 1.368; mean about 1.45'],
+ trap:'Never say the truncation and the codon optimisation were meant to strengthen protection. That is the literal content of the first feedback line in Audrey’s minute. A second trap: the wiki plant pages never state which version was applied. v2t1 comes from the meeting minute only, so settle the version number with the wet lab first.',
+ ruling:'Instructor ruling, Audrey Q1 and Q2: do not claim truncation and codon optimisation were mainly aimed at protective potency; keep production-level improvement separate from plant-level effect. And accept that a direct comparison against wild type would still be useful for validating the modifications — do not turn "we did not run a wild-type arm" into "it was not needed".',
+ check:'Which version did the plant experiments actually use, v2t1 or something else? The wiki plant pages do not say. This has to be answered before the room.'},
+
+K2:{why:'The trap here is reaching for the whole ReLEAF system and sounding like a rehearsed pitch. The instructor already pushed back on Audrey’s answer, detection plus production plus delivery, saying not to claim spraying or drenching is new without a literature comparison. So the thing to offer is what the plant team genuinely found: the vehicle sets the dose ceiling. There is data behind it, the 1 in 16 floor; there is a contradiction to own, the later 1 in 10 and 1 in 20; and it is directly usable by any team doing locally produced protein applied to plants. That is the plant highlight, and it is honest.',
+ nums:['Empty WB800: neat and 1/2 badly yellowed and stunted; 1/4, 1/8 and 1/16 all accumulated anthocyanin → our own 1/16 floor',
+   'The ACCD salt run nevertheless used 1/10 and 1/20 → bleaching',
+   'The working dose ended at 1/40',
+   'What actually lands at 1/40: ACCD about 0.24 µg/mL, BoPep4 about 0.13 µg/mL'],
+ trap:'Do not say we are the first to use ACC deaminase on plants — that is decades of PGPR work. Do not call spraying or drenching an innovation either. Tell them the vehicle-toxicity finding; that one stands up.',
+ ruling:'Instructor ruling, Audrey Q3: do not claim spraying or drenching is inherently novel without a literature comparison; put the weight on the integrated ReLEAF system.',
+ check:'Has anyone searched the literature for locally produced bacterial supernatant applied directly to plants? If it exists, the novelty claim has to move up a level.'},
+
+K3:{why:'This is the strongest question available, because it is a statistics question. The whole thing turns on separating two numbers, which is exactly what the instructor said in the Q5 feedback. Then the third move does something a judge remembers: it grades the credibility. The dose response of the stress really is credible, huge effect, intervals that do not overlap; the protectant recoveries really are only a direction. A team that grades itself is far more credible than one that claims everything holds. The fourth move gives the power calculation, which turns "we did not do enough" into "we know how much more is needed".',
+ nums:['Seedlings within a plate: n = 9 in Sets 4, 6, 9 and the heat trials; n = 25 in Set 7 t1; n = 40 in Sets 8, 10 and 11',
+   'Independent trials: ACCD two agar heat, two soil heat, two agar salt (Set 8 contaminated throughout); CH three; everything else one',
+   'Design effect deff = 1 + (m−1)ρ; m = 40, ρ = 0.3 → deff 12.7 → effective n about 3',
+   'n ≈ 2(1.96+0.84)²(CV/effect)²; CV 15 %, effect 30 % → n ≈ 4 plates per arm; CV 25 % → n ≈ 11'],
+ trap:'"We have n = 40" is the most dangerous sentence in the room. And the n = 40 sets, 8, 10 and 11, are precisely the ones that were contaminated throughout or never repeated — lean on 40 for credibility and a judge who opens Set 8 and reads "contaminated throughout" ends the conversation.',
+ ruling:'Instructor ruling, Audrey Q4 and Q5: be able to explain the limitations without claiming the results are conclusive; keep the number of plants in one trial separate from the number of independently repeated trials. And look at how ecological studies defend limited sample sizes — report effect sizes and intervals rather than p values, and position the work as a pilot that sizes the next experiment.',
+ check:'The n for Set 5 is not on the wiki, and neither is the n for hydroponic or soil salinity. Three gaps to fill.'},
+
+K4:{why:'Do not answer this with mechanism; answer it with our own data. The 6 September soil method comparison is perfect live evidence: fresh weight down 64 per cent and chlorophyll unmoved. That beats any citation, because it is our own plate. Then the fifth move states what tolerance actually means and admits we did not measure it, so the judge learns you understand the distinction before having to extract it from you.',
+ nums:['6 September soil: fresh weight 0.42 g wicking against 0.15 g washing, about −64 %; chlorophyll near 1.0 mg/L under both',
+   'Salt ladder root length 74.95 / 34.77 / 11.00 / 1.36 mm at 0 / 75 / 100 / 150 mM',
+   'Heat trial 1: heated fresh weight about 0.02 g, about 95 % lower'],
+ trap:'Do not say more chlorophyll means more tolerant. And be careful with Set 11, LEA14, where chlorophyll is higher at 75 mM than at 0 mM — an unstressed plant should not have less. That is telling you plate-to-plate variation beats the treatment effect, not that 75 mM is good for plants.',
+ ruling:'Instructor ruling, Audrey Q6: support the choice of these two measurements with previous research. Under salinity, oxidative damage and lipid peroxidation affect chlorophyll pigments, and that is the biological reason for measuring chlorophyll — give the causal chain rather than saying everyone measures it.',
+ check:''},
+
+K5:{why:'The way to score here is to give a better answer than the one being fished for, and then state the real reason it was not done. Fv/Fm is the gold standard in plant stress work, and being non-destructive it closes our biggest design gap, which is that no plant was followed through into recovery. So it is not just another parameter; it is the parameter that repairs a structural problem. The Na⁺/K⁺ line at the end is the honest boundary: we claim tolerance at the phenotype level and we do not claim mechanism.',
+ nums:['Fv/Fm in a healthy plant is about 0.80 to 0.83',
+   'The phase 3 protocol lists leaf area, chlorophyll, FW, MDA, total protein and relative gene expression',
+   'What was actually reported is FW and chlorophyll, plus a little root length'],
+ trap:'Audrey’s answer says relative gene expression was run on one ACCD salinity trial. There is no such data on the wiki. Say it in the room and the next sentence is "show me". Settle it first: either the data exists, in which case say plainly that it is bench data from after the freeze and not on the wiki, or it does not, in which case do not raise it. The instructor also said explicitly: do not describe total protein as a direct measure of nutritional quality.',
+ ruling:'Instructor ruling, Audrey Q7: mention that the other biochemical measurements were limited by time; do not describe total protein content as a direct measure of nutritional quality.',
+ check:'Was relative gene expression actually run? On which arm? Where is the data? This is the first thing to ask the team.'},
+
+K6:{why:'The instructor’s feedback on Audrey Q9 says the answer depends on the farmer’s needs and the kind of stress, which is right, but on its own it sounds evasive. So the third move adds biology: growth arrest is itself a tolerance strategy. That turns "small but alive" from a vague trade-off into a directional prediction. The fourth admits we measured neither, and the fifth gives the fix and notes the heat work is already halfway there — which makes the admission sound like progress rather than a defect.',
+ nums:['Agar heat trial 1: co-treatment lowered survival and yellowed badly — the one place on the site where survival is named',
+   'The heat work has a 5-day recovery; the salt work has none',
+   'The Results page lists survival among the planned soil-heat endpoints, with no data'],
+ trap:'Audrey’s answer at Q10 says all 40 plants survived in some trials, so survival could not separate treatments. The instructor pushed straight back: some experiments did involve plant death, so do not generalise 100 per cent survival to every trial. "Everyone lived" is not a reason for not measuring survival.',
+ ruling:'Instructor ruling, Audrey Q8, Q9 and Q10: one of the instructor’s central points — do not treat fresh weight as the sole indicator that a protectant worked. The answer depends on the severity of the stress, the intended use and the farmer’s needs. And do not generalise 40 out of 40 survival to every trial, because some experiments did have deaths.',
+ check:''},
+
+K7:{why:'What scores here is volunteering the list. Asked what else is in the preparation, someone who can name the TB components, the host’s secreted proteins, the metabolites and the antibiotic in one breath has obviously thought about it. Then admit the missing control is a heat-killed one, and say why it is especially clean for ACCD: it is an enzyme, so boiling kills the activity and leaves everything else unchanged. The closing line, that all three carry a His tag so IMAC was always available, demotes "we did not purify" from an inability to a resource decision.',
+ nums:['TB components: tryptone, yeast extract 24 g/L, glycerol 0.4 %, phosphate buffer 72 mM',
+   '0.22 µm filtration → no live cells, every dissolved molecule retained',
+   'The supernatant carries erythromycin, used to maintain the plasmid',
+   'Hydroponic WB800 controls: 1/20 for the salt work, 1/40 for the heat work'],
+ trap:'The instructor’s feedback at Audrey Q12 is blunt: a medium-only control helps but is not sufficient, because other substances in the protein-containing supernatant could still contribute — so do not claim the cause has been isolated. And do not forget that Bacillus subtilis is itself a well-known PGPR, so the host alone may promote growth. That is exactly why the empty-host control is indispensable.',
+ ruling:'Instructor ruling, Audrey Q12: the instructor was concerned the protectants were not fully purified. A medium-only control helps, but other substances in the protein-containing supernatant could still contribute; without further controls, do not claim complete causal isolation.',
+ check:''},
+
+K8:{why:'Audrey’s answer at Q15 is weak — "based on our evaluation of protein production conditions" says nothing. The real reason is one a judge will nod at: LB carries 171 mM NaCl, so using it in a salinity experiment is adding salt yourself. That turns the choice of TB from arbitrary into forced by the design. Do the arithmetic: 10 g/L ÷ 58.44 g/mol = 0.171 mol/L. Doing that out loud in the room works well. The fourth move volunteers TB’s cost, rich medium meaning mould, which opens the door to Kyle’s ninth question yourself.',
+ nums:['TB: tryptone 12 g/L, yeast extract 24 g/L, glycerol 0.4 %, phosphate buffer 72 mM, no NaCl',
+   'LB: tryptone 10 g/L, yeast extract 5 g/L, NaCl 10 g/L',
+   '10 g/L ÷ 58.44 g/mol = 0.171 mol/L = 171 mM NaCl',
+   'Our ELISA harvests sit at OD600 0.4 to 0.7, early growth rather than high density'],
+ trap:'Do not say "we used LB too". LB was used only for plating after transformation and never on plants. Make the distinction clearly or someone will think we ran a salt experiment in a salted medium.',
+ ruling:'The meeting left this one, Audrey Q15, with no instructor feedback and the thinnest answer of the twenty-five. It is the single most worthwhile answer to strengthen, because it can be answered very well.',
+ check:''},
+
+K9:{why:'There is a standard answer here and Kyle is waiting for it: ultrafiltration. It works because it does two things at once — concentrates the protein and washes the small molecules out — which breaks the dilemma in Audrey Q14, that diluting the medium also dilutes the protectant. Naming the cut-off makes the answer sound thought through: ACCD at 41 kDa and LEA14 at about 17 kDa are both retained, but BoPep4 is a peptide and would slip through 10 kDa, so it needs 3 kDa. That detail is the difference between understanding it and reciting it. The last move is the instructor’s explicit demand at Q14: both conditions have to be shown together.',
+ nums:['WB800 still gives anthocyanin at 1/16; 1/10 and 1/20 bleach → working dose 1/40',
+   'At 1/40 ACCD is about 0.236 µg/mL (9.458 ÷ 40)',
+   'Molecular weights: ACCD about 41 kDa, LEA14 about 17 kDa, BoPep4 a small peptide',
+   'Results Fig 38: TB also shifts the α-KB standard curve of the DNPH assay'],
+ trap:'The instructor said at Audrey Q13 to acknowledge the medium effect explicitly rather than just saying a negative control was included. So the first words have to be "Yes, it does". And Fig 38 shows TB interferes with our own activity assay too — raising that yourself reads as honest, and it is already drawn on the wiki.',
+ ruling:'Instructor ruling, Audrey Q13 and Q14: acknowledge the medium effect explicitly instead of pointing at a negative control. And both things must be shown at once: that the diluted medium no longer harms plant growth, and that the protectant is still effective at that dilution.',
+ check:''},
+
+K10:{why:'The sharpest question of the lot, and it has a perfect answer. Kyle asks whether the mutation sites affect antibody recognition — a question that presupposes a sequence-specific antibody. The answer is that we never used one, so the question dissolves. The instructor’s feedback at Audrey Q19 is exactly that: name the His tag immediately, do not open with a long explanation of ELISA.\n\nBut what really matters comes after the third move. In our own Table 2 the empty host WB800 reads 5.452 and 4.562 µg/mL, while LEA14 reads 6.3 and 6.1 and BoPep4 4.7 to 6.6 — all inside the background. Only ACCD, at 9.5 to 13.4, clearly clears it. A judge who opens the table sees this unaided. Say it first and you gain; be asked and the whole protein-quantification story goes. The wiki already says the values should not be read as specific yields, so saying it is quoting our own page, not self-sabotage.',
+ nums:['Empty host WB800: 5.452 at 8 h, 4.562 at 12 h, µg/mL',
+   'Csn-LEA 6.323 / 6.090; BoPep4 WT 6.090 / 4.744; v2t1 5.230 / 6.323; v2t2 6.601 / 5.488',
+   'Csn-ACCD 12.072 / 13.446; AcdS 2.1 9.458 / 8.197',
+   'Standard curve 0.093 to 3 µg/mL, six points in duplicate, R² = 0.9967 → every sample extrapolated',
+   'Signal to background: ACCD 1.8 to 2.9×; LEA14 about 1.2×; BoPep4 0.9 to 1.4×',
+   'Time points 8 h and 12 h, cell-free supernatant'],
+ trap:'Three traps. One, do not explain how an ELISA works before naming the His tag — the instructor said to reverse that order. Two, do not say ELISA proves the protein is active, Audrey Q23; ELISA counts amount and DNPH counts activity. Three, Table 2 holds two pairs of identical values (BoPep4 WT at 8 h and Csn-LEA at 12 h are both 6.090; BoPep4 v2t1 at 12 h and Csn-LEA at 8 h are both 6.323) — very likely a copy error, to be checked with the team rather than explained off the cuff.',
+ ruling:'Instructor ruling, Audrey Q19 to Q23: what the instructor actually cares about is whether a suitable antibody can recognise the modified protein, so bring up the His tag immediately rather than explaining ELISA at length. That is the most direct answer to the question. Confirm the commercial kit and the assay format, competitive, before discussing its detection mechanism. And a His-tag ELISA cannot establish biological activity — the ACCD activity assay and the plant rescue experiments are relevant evidence, but they answer different questions.',
+ check:'Three things: the exact name and format of the commercial ELISA kit; whether the two pairs of identical values in Table 2 are a copy error; and the units on the two per-OD600 columns.'}
+};
+
+window.AUD_EN = {
+A1:'The wiki plant pages never state which version was applied. The version number v2t1 appears only on the protein-quantification side, as AcdS 2.1 and BoPep4 v2t1. The mapping has to be confirmed with the wet lab.',
+A2:'A wild-type comparison was made at the protein level, and it went against the modification: per OD600 the wild-type-codon Csn-ACCD produced about 1.45 times as much as the optimised version. So "we did not compare against wild type" is true of the plant experiments and false of the ELISA — make that distinction precisely.',
+A3:'This answer is weak. What the plant team genuinely found is that the vehicle sets the dose ceiling: empty WB800 still stresses the plant at 1 in 16. That is quantified, ours, and directly useful to another team.',
+A4:'What ecology actually does is three things: report effect sizes and intervals rather than p values; admit the work is a pilot; and use the pilot’s variability to compute the n the next experiment needs. Saying those three is far stronger than saying time ran out.',
+A5:'And note that the three n = 40 sets, 8, 10 and 11, are precisely the ones that were contaminated throughout (Set 8) or run once without repetition. So 40 cannot be used to carry credibility.',
+A6:'"Measurable in all three systems" is actually the best reason, because it lets the three systems be compared with each other. Present that as a design decision, not as convenience.',
+A7:'Two problems. First, the claim that relative gene expression was run on one ACCD salinity trial is not backed by anything on the wiki, and saying it invites a request to show it. Second, the list omits Fv/Fm, which is the standard answer in plant stress work and the only measurement that would close our inability to follow the same plant through recovery.',
+A8:'The answer is right. One more layer can be added: growth arrest is itself a tolerance strategy, with carbon moved from growth into osmolytes and defence, so "small but alive" may be a sign of active defence.',
+A9:'For a farmer the real endpoint is saleable yield after the stress event, which is survival times recovered growth. Measuring on a single harvest day gives neither.',
+A10:'The counterexample is on the wiki: in agar heat trial 1, co-treatment lowered survival. So "everyone lived" does not hold.',
+A11:'Only the heat work has a five-day recovery; the salt work has none at all. So recovery is a word we can only use about the heat experiments.',
+A12:'The hydroponic control was empty-host WB800 culture, which is much stronger than medium alone because it carries both the medium and the host’s secreted proteins. Say so. What is missing is a heat-killed supernatant control.',
+A13:'The numbers belong here: in the WB800 dilution test, neat and 1/2 yellowed badly and 1/4 to 1/16 accumulated anthocyanin visibly, with the conclusion to dilute at least sixteenfold. Open with "Yes".',
+A14:'The standard way out of this dilemma is 10 kDa ultrafiltration: protein retained, small molecules washed through, and the protectant concentrated at the same time. That is the answer Kyle’s ninth question is waiting for.',
+A15:'The weakest of the twenty-five answers — it does not answer the question. The real reason: LB carries 10 g/L NaCl, which is 171 mM, so pouring it into a salinity experiment adds salt; TB has none. This one can be answered very well.',
+A16:'The general form: the sign of d(C/W) is the sign of (dC/C) − (dW/W). If water goes faster than pigment, the ratio rises, with nothing to do with pigment. The ready-made example is soil on 12 September: unnormalised says post is best at 1.13, normalised says co is best, one dataset and two rankings.',
+A17:'Change the wording: not unnormalised but normalised by seedling number. That is the instructor’s explicit correction, and it makes the answer far stronger — we do have a denominator, we simply moved to one the stress does not touch.',
+A18:'The highest-risk question of the twenty-five. Selective reporting is a research-integrity issue, not a technical one. The answer has to be that both approaches were explored and one was chosen on the stated ground that the denominator moves under stress — and both figures must be shown.',
+A19:'Order: His tag first, ELISA second. And this answer has to carry two further facts, that the empty host reads positive and that every sample is out of range, because a judge only has to open Table 2 to see both.',
+A20:'This is the complete back half of Kyle’s tenth question, and it is clean. The residual risk is not mutation but tag accessibility — whether the tag is still exposed if folding changes — and the competitive format, which counts His epitopes rather than intact protein.',
+A21:'"Secreted rather than total cellular" has a clean answer: we read cell-free supernatant, the liquid after a spin, and a Western shows a band in the supernatant and none in the pellet. OD600 is only 0.4 to 0.7, so these are early-growth harvests.',
+A22:'Fix the unit: micrograms per millilitre, not milligrams. And this answer avoids the numbers, which will be pushed on in the room. Learn them: ACCD 8 to 13, LEA14 about 6, BoPep4 4.7 to 6.6, empty host 4.6 to 5.5 µg/mL.',
+A23:'The answer is correct. What it needs is the addition that only ACCD has an activity assay, DNPH. LEA14 is a disordered protein and BoPep4 a signalling peptide, and neither has a catalytic activity to measure — that is the honest reason their evidence is weaker. Also: the batch of supernatant that went onto plants was never assayed, and that is where the chain of evidence breaks.',
+A24:'The most familiar ground of all. Give the mechanism directly: with n_bio = 1 there are no degrees of freedom to estimate between-group variation, so it is not "not significant", it is "not testable". The asterisks on the figures were computed by treating each seedling as independent.',
+A25:'We have a ready example and should volunteer it: BoPep4 holds chlorophyll at 100 mM and suppresses growth at 0 mM, the same direction in agar Set 10 and in hydroponics. Explain it with the PTI growth-defence trade-off and it moves from a defect to a mechanistic consistency.'
+};
+
+window.AUD_EN_NOFB = '(no instructor feedback at the meeting)';

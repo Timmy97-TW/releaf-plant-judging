@@ -14,7 +14,7 @@ window.DRAW.coverage = {
   t_zh:'證據覆蓋矩陣', t_en:'Evidence coverage',
   lede_zh:'三個系統、兩種逆境、五種施用物 = 30 格。有量化結果的只有 13 格，而其中只有 1 格的效果大過雜訊 — 那一格是逆境本身，不是保護劑。',
   take_zh:'先記這張圖的形狀：ACCD 那一行最滿，LEA14 那一行最空，熱逆境整體比鹽逆境空。評審問到空格時，答案是「沒做」，不是「沒效」。',
-  svg:`<svg viewBox="0 0 860 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Evidence coverage matrix across three systems, two stresses and five agents">
+  svg:`<svg viewBox="0 0 860 442" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Evidence coverage matrix across three systems, two stresses and five agents">
 <style>
 .hd{font:600 13px/1 ui-sans-serif,system-ui,sans-serif;fill:#2c3238}
 .rw{font:600 13px/1 ui-sans-serif,system-ui,sans-serif;fill:#2c3238}
@@ -23,7 +23,7 @@ window.DRAW.coverage = {
 .cd{font:600 11px/1 ui-sans-serif,system-ui,sans-serif;fill:#6b7280}
 .lg{font:11px/1 ui-sans-serif,system-ui,sans-serif;fill:#2c3238}
 </style>
-<rect width="860" height="420" fill="#fff"/>
+<rect width="860" height="442" fill="#fff"/>
 <!-- column group headers -->
 <text class="hd" x="232" y="26">瓊脂 Agar</text>
 <text class="hd" x="446" y="26">水耕 Hydroponics</text>
@@ -87,7 +87,7 @@ window.DRAW.coverage = {
 <text class="rw" x="18" y="382">載體本身</text><text class="sm" x="18" y="396">WB800 / TB · 無保護劑</text>
 <rect x="428" y="364" width="94" height="40" rx="5" fill="#0167ef"/><text class="ce" x="475" y="382" text-anchor="middle">1/16 地板</text><text class="ce" x="475" y="396" text-anchor="middle">劑量上限</text>
 <rect x="640" y="364" width="94" height="40" rx="5" fill="#9fd3b4"/><text class="ce" x="687" y="388" text-anchor="middle" fill="#14492f">方法比較</text>
-<text class="sm" x="540" y="390">← 這一列決定了上面所有列能用多濃</text>
+<text class="sm" x="18" y="426">這一列決定了上面所有列能用多濃</text>
 </svg>`
 };
 
@@ -221,7 +221,7 @@ window.DRAW.elisa = {
   t_zh:'ELISA 的兩個問題', t_en:'Two problems with the ELISA',
   lede_zh:'競爭型抗 His ELISA。標準曲線只到 3 µg/mL，而所有樣品都在 4.5 到 13.4 之間；空宿主 WB800 自己就讀 4.5 到 5.5。',
   take_zh:'只有 ACCD 明確站在背景之上。LEA14 與 BoPep4 的值落在空宿主背景裡 — 這件事要自己先講。',
-  svg:`<svg viewBox="0 0 860 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ELISA standard curve with all samples above the top standard and the empty-host background band">
+  svg:`<svg viewBox="0 0 886 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ELISA standard curve with all samples above the top standard and the empty-host background band">
 <style>
 .ti{font:600 13px/1 ui-sans-serif,system-ui,sans-serif;fill:#2c3238}
 .ax{font:11px/1 ui-sans-serif,system-ui,sans-serif;fill:#6b7280}
@@ -229,7 +229,7 @@ window.DRAW.elisa = {
 .pt{font:600 11px/1 ui-sans-serif,system-ui,sans-serif;fill:#2c3238}
 .wt{font:600 11px/1 ui-sans-serif,system-ui,sans-serif;fill:#fff}
 </style>
-<rect width="860" height="420" fill="#fff"/>
+<rect width="886" height="420" fill="#fff"/>
 <text class="ti" x="40" y="28">濃度軸（µg/mL）· 每一個點是 Table 2 的一個樣品</text>
 
 <!-- axis 0 .. 14 mapped to x 70 .. 800 -->
@@ -281,7 +281,7 @@ window.DRAW.elisa = {
 <text class="nt" x="575" y="100" fill="#0a4fae">AcdS 2.1（最佳化 ACCD）8.20 / 9.46</text>
 <!-- Csn-ACCD -->
 <circle cx="629" cy="72" r="6" fill="#00875C"/><circle cx="701" cy="72" r="6" fill="#00875C"/>
-<text class="nt" x="713" y="76" fill="#14492f">Csn-ACCD（野生型密碼子）12.07 / 13.45</text>
+<text class="nt" x="713" y="76" fill="#14492f">Csn-ACCD 野生型 12.07 / 13.45</text>
 </g>
 
 <!-- bottom readings -->

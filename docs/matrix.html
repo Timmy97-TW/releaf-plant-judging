@@ -6,19 +6,22 @@
 <title>實驗矩陣 · ReLEAF 植物組</title>
 <meta name="description" content="植物組做過的每一次 run，一列一個。三個系統、兩種逆境、五種施用物，每一列附 n、對照、能支撐什麼與陷阱。">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4c0 9-5.5 14-12 14-1.6 0-3-.3-4-.8' stroke='%235aaa47' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/css/base.css?v=2">
+<link rel="stylesheet" href="assets/css/base.css?v=3">
 <link rel="stylesheet" href="assets/css/pages.css?v=2">
-<link rel="stylesheet" href="assets/css/learn.css?v=1">
+<link rel="stylesheet" href="assets/css/learn.css?v=5">
 </head>
 <body>
 <nav class="nav"></nav>
 
 <header class="wrap hero">
-  <div class="eyebrow">01 · 骨架</div>
-  <h1>實驗矩陣</h1>
+  <div class="eyebrow"><span class="only-en">01 · The skeleton</span><span class="only-zh">01 · 骨架</span></div>
+  <h1><span class="only-en">The experiment matrix</span><span class="only-zh">實驗矩陣</span></h1>
   <p class="lede lead-big">
-    植物組做過的每一次 run，一列一個。三個系統 × 兩種逆境 × 五種施用物。
-    先看最右邊那一欄 —— 全站只有一列是「站得住」，而那一列證明的是逆境本身，不是保護劑。
+    <span class="only-en">Every run the plant team did, one to a row. Three systems, two stresses, five agents.
+    Read the right-hand column first: exactly one row on this site is defensible, and what it proves is the
+    stress itself rather than a protectant.</span>
+    <span class="only-zh">植物組做過的每一次 run，一列一個。三個系統 × 兩種逆境 × 五種施用物。
+    先看最右邊那一欄 —— 全站只有一列是「站得住」，而那一列證明的是逆境本身，不是保護劑。</span>
   </p>
   <div class="rule-tri"><i></i><i></i><i></i></div>
 </header>
@@ -29,8 +32,9 @@
 
 <section class="wrap">
   <div class="sec-head">
-    <h2>29 次 run</h2>
-    <p>點任何一列展開。篩選用下面的按鈕；數字會跟著變。</p>
+    <h2><span class="only-en">Twenty-nine runs</span><span class="only-zh">29 次 run</span></h2>
+    <p><span class="only-en">The filters below change the counts as well as the rows.</span>
+       <span class="only-zh">篩選用下面的按鈕，數字會跟著變。</span></p>
   </div>
 
   <div class="mx-bar" id="f-sys"></div>
@@ -38,78 +42,94 @@
   <div class="mx-bar" id="f-agent"></div>
   <div class="mx-bar" id="f-verdict"></div>
   <div class="mx-bar">
-    <button class="btn btn-sm btn-line" id="reset">清除篩選</button>
-    <button class="btn btn-sm btn-line" id="expand">全部展開</button>
+    <button class="btn btn-sm btn-line" id="reset"><span class="only-en">Clear filters</span><span class="only-zh">清除篩選</span></button>
+    <button class="btn btn-sm btn-line" id="expand"></button>
     <span class="sp"></span>
     <span class="mx-count" id="count"></span>
   </div>
 
   <div class="mx" id="mx"></div>
-  <p class="empty hidden" id="empty">這個組合沒有 run。那本身就是一個答案：沒做。</p>
+  <p class="empty hidden" id="empty">
+    <span class="only-en">No run with that combination. That is itself an answer: not done.</span>
+    <span class="only-zh">這個組合沒有 run。那本身就是一個答案：沒做。</span></p>
 </section>
 
 <section class="wrap narrow">
-  <div class="sec-head"><h2>怎麼讀這張矩陣</h2></div>
+  <div class="sec-head"><h2><span class="only-en">How to read the matrix</span><span class="only-zh">怎麼讀這張矩陣</span></h2></div>
   <div class="grid g2">
     <div class="card">
-      <span class="pill pill-a">形狀</span>
-      <h3 style="margin-top:.6rem">先記形狀，不要記 29 列</h3>
-      <p>ACCD 那一行最滿（它是唯一被重複測過的）。LEA14 那一行最空。熱逆境整體比鹽逆境空。
-      載體那一列單獨放在最下面，因為它決定了上面所有列能用多濃。</p>
+      <span class="pill pill-a"><span class="only-en">Shape</span><span class="only-zh">形狀</span></span>
+      <h3 style="margin-top:.6rem"><span class="only-en">Learn the shape, not the 29 rows</span><span class="only-zh">先記形狀，不要記 29 列</span></h3>
+      <p><span class="only-en">The ACCD row is the fullest, because it is the only protectant that was repeated. The LEA14 row
+      is the emptiest. Heat is emptier than salt throughout. The vehicle sits alone at the bottom, because it decides
+      how strong every row above it is allowed to be.</span>
+      <span class="only-zh">ACCD 那一行最滿（它是唯一被重複測過的）。LEA14 那一行最空。熱逆境整體比鹽逆境空。
+      載體那一列單獨放在最下面，因為它決定了上面所有列能用多濃。</span></p>
     </div>
     <div class="card">
-      <span class="pill pill-w">空格</span>
-      <h3 style="margin-top:.6rem">空格的答案是「沒做」</h3>
-      <p>評審指著空格問時，答案是「我們沒做那一組」，不是「那一組沒效」。
-      尤其熱逆境的 LEA14 與 BoPep4：protocol 清單上有，結果不在 wiki 上 —— 這兩格進房間前要先確認。</p>
+      <span class="pill pill-w"><span class="only-en">Empty cells</span><span class="only-zh">空格</span></span>
+      <h3 style="margin-top:.6rem"><span class="only-en">An empty cell means "not done"</span><span class="only-zh">空格的答案是「沒做」</span></h3>
+      <p><span class="only-en">When a judge points at an empty cell, the answer is that we did not run that arm, never that
+      the arm did not work. LEA14 and BoPep4 under heat especially: they are on the protocol list and their results are
+      not on the wiki, so confirm those two cells before the room.</span>
+      <span class="only-zh">評審指著空格問時，答案是「我們沒做那一組」，不是「那一組沒效」。
+      尤其熱逆境的 LEA14 與 BoPep4：protocol 清單上有，結果不在 wiki 上 —— 這兩格進房間前要先確認。</span></p>
     </div>
   </div>
 </section>
 
 <footer class="foot">
   <div class="wrap">
-    <p>全部出自凍結後的 ReLEAF wiki：<a href="https://2026.igem.wiki/gems-taiwan/plant">Plants</a> 與
-    <a href="https://2026.igem.wiki/gems-taiwan/results">Results</a>。這裡不取代 wiki；兩者不一致時以 wiki 為準。</p>
+    <p><span class="only-en">Everything here comes from the frozen ReLEAF wiki:
+    <a href="https://2026.igem.wiki/gems-taiwan/plant">Plants</a> and
+    <a href="https://2026.igem.wiki/gems-taiwan/results">Results</a>. This site does not replace the wiki; where the
+    two disagree, the wiki wins.</span>
+    <span class="only-zh">全部出自凍結後的 ReLEAF wiki：<a href="https://2026.igem.wiki/gems-taiwan/plant">Plants</a> 與
+    <a href="https://2026.igem.wiki/gems-taiwan/results">Results</a>。這裡不取代 wiki；兩者不一致時以 wiki 為準。</span></p>
   </div>
 </footer>
 
-<script src="assets/js/app.js?v=3"></script>
-<script src="assets/data/draw.js?v=1"></script>
+<script src="assets/js/app.js?v=5"></script>
+<script src="assets/data/draw.js?v=4"></script>
+<script src="assets/data/en-draw.js?v=4"></script>
 <script src="assets/data/matrix.js?v=1"></script>
+<script src="assets/data/en-matrix.js?v=2"></script>
 <script>
 (function () {
   var M = window.MATRIX, V = window.MATRIX_VERDICT, SY = window.MATRIX_SYS, AG = window.MATRIX_AGENT;
+  var E = window.MX_EN || {}, EV = window.MX_EN_VERDICT || {}, EA = window.MX_EN_AGENT || {};
   var ST = { salt: '鹽 salt', heat: '熱 heat', none: '只測載體' };
+  var STE = window.MX_EN_STRESS || { salt: 'Salt', heat: 'Heat', none: 'Vehicle only' };
   var sel = { sys: '', stress: '', agent: '', verdict: '' };
 
-  /* ── 圖 ── */
   function diagram(key, host) {
-    var d = window.DRAW[key];
+    var d = window.DRAW[key], e = (window.DRAW_EN || {})[key] || {};
     document.getElementById(host).innerHTML =
-      '<div class="dg"><div class="dg-h"><h3>' + RL.esc(d.t_zh) + '</h3>' +
-      '<span class="en">' + RL.esc(d.t_en) + '</span></div>' +
-      '<p class="dg-lede">' + RL.esc(d.lede_zh) + '</p>' +
-      '<div class="dg-box">' + d.svg + '</div>' +
-      '<p class="dg-take"><b>要記的：</b>' + RL.esc(d.take_zh) + '</p></div>';
+      '<div class="dg"><div class="dg-h"><h3>' + RL.bi(d.t_en, d.t_zh) + '</h3>' +
+      '<span class="en only-zh">' + RL.esc(d.t_en) + '</span></div>' +
+      '<p class="dg-lede">' + RL.bi(e.lede, d.lede_zh) + '</p>' +
+      '<div class="dg-box">' + RL.biH(e.svg || d.svg, d.svg) + '</div>' +
+      '<p class="dg-take">' +
+        RL.biH('<b>The point. </b>' + RL.esc(e.take || d.take_zh),
+               '<b>要記的：</b>' + RL.esc(d.take_zh)) + '</p></div>';
   }
   diagram('coverage', 'dg-coverage');
 
-  /* ── 篩選列 ── */
-  function bar(id, field, dict, label) {
+  function bar(id, field, dict, edict, en, zh) {
     var keys = Object.keys(dict);
-    var el = document.getElementById(id);
-    el.innerHTML = '<span class="mx-count" style="min-width:5.5rem">' + label + '</span>' +
+    document.getElementById(id).innerHTML =
+      '<span class="mx-lbl">' + RL.bi(en, zh) + '</span>' +
       keys.map(function (k) {
         var n = M.filter(function (r) { return r[field] === k; }).length;
-        var txt = dict[k].zh || dict[k];
+        var z = dict[k].zh || dict[k], a = (edict && edict[k]) || dict[k].en || z;
         return '<button class="btn btn-sm btn-line" data-f="' + field + '" data-v="' + k + '">' +
-               RL.esc(txt) + ' <span style="opacity:.55">' + n + '</span></button>';
+               RL.bi(a, z) + ' <span style="opacity:.55">' + n + '</span></button>';
       }).join('');
   }
-  bar('f-sys', 'sys', SY, '系統');
-  bar('f-stress', 'stress', ST, '逆境');
-  bar('f-agent', 'agent', AG, '施用物');
-  bar('f-verdict', 'verdict', V, '判讀');
+  bar('f-sys', 'sys', SY, null, 'System', '系統');
+  bar('f-stress', 'stress', ST, STE, 'Stress', '逆境');
+  bar('f-agent', 'agent', AG, null, 'Applied', '施用物');
+  bar('f-verdict', 'verdict', V, null, 'Verdict', '判讀');
 
   document.addEventListener('click', function (e) {
     var b = e.target.closest('[data-f]');
@@ -121,38 +141,50 @@
   document.getElementById('reset').addEventListener('click', function () {
     sel = { sys: '', stress: '', agent: '', verdict: '' }; paint();
   });
-  document.getElementById('expand').addEventListener('click', function () {
+
+  function setExpandLabel(el, open) {
+    el.innerHTML = open ? RL.bi('Collapse all', '全部收起') : RL.bi('Expand all', '全部展開');
+    el.dataset.open = open ? '1' : '';
+  }
+  var exp = document.getElementById('expand');
+  setExpandLabel(exp, false);
+  exp.addEventListener('click', function () {
     var rows = document.querySelectorAll('.mxr');
     var anyShut = false;
     rows.forEach(function (r) { if (!r.classList.contains('open')) anyShut = true; });
     rows.forEach(function (r) { r.classList.toggle('open', anyShut); });
-    this.textContent = anyShut ? '全部收起' : '全部展開';
+    setExpandLabel(this, anyShut);
   });
 
-  /* ── 一列 ── */
   function row(r) {
-    var v = V[r.verdict];
-    var h = '<div class="mxr" id="r-' + r.id + '">' +
+    var v = V[r.verdict], e = E[r.id] || {};
+    function f(en, zh, cls) {
+      return '<p' + (cls ? ' class="' + cls + '"' : '') + '>' + RL.bi(en || zh, zh) + '</p>';
+    }
+    return '<div class="mxr" id="r-' + r.id + '">' +
       '<button class="mxr-h" data-row="' + r.id + '" aria-expanded="false">' +
         '<span class="mxr-id">' + RL.esc(r.id) + '</span>' +
-        '<span class="mxr-t"><b>' + RL.esc(r.label_zh) + '</b>' +
-          '<span>' + RL.esc(SY[r.sys].zh) + ' · ' + RL.esc(ST[r.stress]) + ' · ' +
-          RL.esc(AG[r.agent].zh) + ' · ' + RL.esc(r.set) + '</span></span>' +
-        '<span class="mxr-n">n ' + RL.esc(r.n) + ' · n<sub>bio</sub> ' + r.nbio + '</span>' +
-        '<span class="vd vd-' + r.verdict + '">' + RL.esc(v.zh) + '</span>' +
+        '<span class="mxr-t"><b>' + RL.bi(r.label_en, r.label_zh) + '</b>' +
+          '<span>' + RL.bi(
+              SY[r.sys].en + ' · ' + STE[r.stress] + ' · ' + AG[r.agent].en + ' · ' + (e.set || r.set),
+              SY[r.sys].zh + ' · ' + ST[r.stress] + ' · ' + AG[r.agent].zh + ' · ' + r.set) +
+          '</span></span>' +
+        '<span class="mxr-n">n ' + RL.bi(e.n || r.n, r.n) + ' · n<sub>bio</sub> ' + r.nbio + '</span>' +
+        '<span class="vd vd-' + r.verdict + '">' + RL.bi(v.en, v.zh) + '</span>' +
       '</button>' +
       '<div class="mxr-b">' +
-        '<h5>設計</h5><p>' + RL.esc(r.design_zh) + '</p>' +
-        '<h5>日期與讀數</h5><p>' + RL.esc(r.date) + ' · 第 ' + RL.esc(String(r.days)) +
-          ' 天 · ' + RL.esc(r.readout_zh) + '</p>' +
-        (r.num_zh ? '<h5>數字</h5><p class="mxr-num">' + RL.esc(r.num_zh) + '</p>' : '') +
-        '<h5>能支撐的一句話</h5><p>' + RL.esc(r.says_zh) + '</p>' +
-        '<h5>不能支撐的</h5><p class="mxr-bad">' + RL.esc(r.cannot_zh) + '</p>' +
-        '<h5>陷阱</h5><p class="mxr-trap">' + RL.esc(r.trap_zh) + '</p>' +
+        '<h5>' + RL.bi('Design', '設計') + '</h5>' + f(e.design, r.design_zh) +
+        '<h5>' + RL.bi('Dates and readout', '日期與讀數') + '</h5>' +
+          '<p>' + RL.bi(
+            (e.date || r.date) + ' · day ' + r.days + ' · ' + (e.readout || r.readout_zh),
+            r.date + ' · 第 ' + r.days + ' 天 · ' + r.readout_zh) + '</p>' +
+        (r.num_zh ? '<h5>' + RL.bi('Numbers', '數字') + '</h5>' + f(e.num, r.num_zh, 'mxr-num') : '') +
+        '<h5>' + RL.bi('The sentence it supports', '能支撐的一句話') + '</h5>' + f(e.says, r.says_zh) +
+        '<h5>' + RL.bi('What it cannot support', '不能支撐的') + '</h5>' + f(e.cannot, r.cannot_zh, 'mxr-bad') +
+        '<h5>' + RL.bi('The trap', '陷阱') + '</h5>' + f(e.trap, r.trap_zh, 'mxr-trap') +
         (r.fig ? '<div class="mxr-fig figc"><img src="assets/img/fig/' + r.fig +
-                 '" alt="' + RL.esc(r.label_zh) + '" loading="lazy"></div>' : '') +
+                 '" alt="' + RL.esc(r.label_en) + '" loading="lazy"></div>' : '') +
       '</div></div>';
-    return h;
   }
 
   function paint() {
@@ -167,9 +199,10 @@
     document.getElementById('empty').classList.toggle('hidden', list.length > 0);
     var n1 = list.filter(function (r) { return r.verdict === 'strong'; }).length;
     var nd = list.filter(function (r) { return r.verdict === 'direction'; }).length;
-    document.getElementById('count').textContent =
-      list.length + ' / ' + M.length + ' 列 · 站得住 ' + n1 + ' · 方向 ' + nd;
-    document.getElementById('expand').textContent = '全部展開';
+    document.getElementById('count').innerHTML = RL.bi(
+      list.length + ' / ' + M.length + ' rows · defensible ' + n1 + ' · direction ' + nd,
+      list.length + ' / ' + M.length + ' 列 · 站得住 ' + n1 + ' · 方向 ' + nd);
+    setExpandLabel(document.getElementById('expand'), false);
   }
 
   document.addEventListener('click', function (e) {
