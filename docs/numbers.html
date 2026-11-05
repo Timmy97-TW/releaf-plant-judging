@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4c0 9-5.5 14-12 14-1.6 0-3-.3-4-.8' stroke='%235aaa47' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/css/base.css?v=3">
 <link rel="stylesheet" href="assets/css/pages.css?v=2">
-<link rel="stylesheet" href="assets/css/learn.css?v=5">
+<link rel="stylesheet" href="assets/css/learn.css?v=6">
 </head>
 <body>
 <nav class="nav"></nav>
@@ -136,10 +136,10 @@
                                   x.at_zh + (x.sd ? ' · ' + x.sd : '')) + '</p>' +
       tb +
       '<div class="nc-meta">' +
-        '<div><b class="lb">n</b>' + RL.bi(e.n || x.n_zh, x.n_zh) + '</div>' +
-        '<div><b class="lb">' + RL.bi('Control', '對照') + '</b>' + RL.bi(e.ctl || x.ctl_zh, x.ctl_zh) + '</div>' +
+        '<div><b class="cardlab">n</b>' + RL.bi(e.n || x.n_zh, x.n_zh) + '</div>' +
+        '<div><b class="cardlab">' + RL.bi('Control', '對照') + '</b>' + RL.bi(e.ctl || x.ctl_zh, x.ctl_zh) + '</div>' +
       '</div>' +
-      '<p class="nc-unit"><b class="lb">' + RL.bi('Unit of inference', '推論單位') + '</b>' +
+      '<p class="nc-unit"><b class="cardlab">' + RL.bi('Unit of inference', '推論單位') + '</b>' +
         RL.bi(e.unit || x.unit_zh, x.unit_zh) + '</p>' +
       '<div class="nc-two">' +
         '<div class="nc-ok"><h6>' + RL.bi('It supports', '它支撐') + '</h6>' +
@@ -147,9 +147,9 @@
         '<div class="nc-no"><h6>' + RL.bi('It does not support', '它不支撐') + '</h6>' +
           RL.biList('ul', '', e.fails, x.fails_zh) + '</div>' +
       '</div>' +
-      '<p class="nc-math"><b class="lb">' + RL.bi('The arithmetic', '算術') + '</b>' +
+      '<p class="nc-math"><b class="cardlab">' + RL.bi('The arithmetic', '算術') + '</b>' +
         RL.bi(e.math || x.math_zh, x.math_zh) + '</p>' +
-      '<p class="nc-trap"><b class="lb">' + RL.bi('The trap', '陷阱') + '</b>' +
+      '<p class="nc-trap"><b class="cardlab">' + RL.bi('The trap', '陷阱') + '</b>' +
         RL.bi(e.trap || x.trap_zh, x.trap_zh) + '</p>' +
       '<p class="nc-src">' + RL.bi(e.src || x.src, x.src) + '</p>' +
       '</div>';

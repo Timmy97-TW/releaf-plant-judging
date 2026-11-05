@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4c0 9-5.5 14-12 14-1.6 0-3-.3-4-.8' stroke='%235aaa47' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/css/base.css?v=3">
 <link rel="stylesheet" href="assets/css/pages.css?v=2">
-<link rel="stylesheet" href="assets/css/learn.css?v=5">
+<link rel="stylesheet" href="assets/css/learn.css?v=6">
 </head>
 <body>
 <nav class="nav"></nav>
@@ -122,7 +122,7 @@
         '<h5>' + RL.bi('The meeting ruling', '會議裁定') + '</h5>' +
         '<p class="ruling">' + RL.bi(e.ruling || q.ruling_zh, q.ruling_zh) + '</p>' +
         (q.check_zh ? '<h5>' + RL.bi('Confirm first', '要先確認') + '</h5>' +
-          '<p class="chk">' + RL.bi(e.check || q.check_zh, q.check_zh) + '</p>' : '') +
+          '<p class="confirm">' + RL.bi(e.check || q.check_zh, q.check_zh) + '</p>' : '') +
         '</div>' +
       '</div></div>';
   }
@@ -137,7 +137,7 @@
         '<span class="adq-q">' + RL.esc(x.q) + '</span>' + k +
       '</button>' +
       '<div class="adq-b">' +
-        '<h6>' + RL.bi('Keywords', '關鍵字') + '</h6><div class="kw sm">' +
+        '<h6>' + RL.bi('Keywords', '關鍵字') + '</h6><div class="kw kwsm">' +
           x.kw.map(function (s) { return '<span>' + RL.esc(s) + '</span>'; }).join('') + '</div>' +
         '<h6>' + RL.bi('The answer given at the meeting', '會議上的答案') + '</h6>' +
           '<p class="adq-a">' + RL.esc(x.a) + '</p>' +

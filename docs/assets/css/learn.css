@@ -159,7 +159,7 @@
   margin: .6rem 0 .2rem; line-height: 1.5; overflow-wrap: anywhere; }
 .nc-at { font-size: .8125rem; line-height: 1.65; color: var(--muted); margin: 0 0 .85rem; }
 
-.lb {
+.cardlab {
   display: block; font-size: .6875rem; text-transform: uppercase; letter-spacing: .07em;
   font-weight: 600; margin-bottom: .3rem; opacity: .85;
 }
@@ -167,9 +167,9 @@
   font-size: .8125rem; line-height: 1.65; padding: .8rem .95rem; background: rgba(0,0,0,.025);
   border-radius: var(--r-sm); margin-bottom: .85rem; }
 .nc-meta div { min-width: 0; }
-.nc-meta .lb { color: var(--faint); }
+.nc-meta .cardlab { color: var(--faint); }
 .nc-unit { font-size: .9375rem; line-height: 1.72; margin: 0 0 .85rem; max-width: 84ch; }
-.nc-unit .lb { color: var(--faint); }
+.nc-unit .cardlab { color: var(--faint); }
 .nc-two { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; margin-bottom: .85rem; }
 @media (max-width: 680px) { .nc-two { grid-template-columns: 1fr; } }
 .nc-two > div { padding: .8rem .95rem; border-radius: var(--r-sm); }
@@ -187,7 +187,7 @@
 .nc-trap { font-size: .9375rem; line-height: 1.72; padding: .8rem 1rem .8rem 1.25rem;
   background: var(--amber-wash); border-left: 3px solid var(--amber); border-radius: var(--r-sm);
   color: var(--amber); margin: 0; }
-.nc-math .lb, .nc-trap .lb { opacity: .7; }
+.nc-math .cardlab, .nc-trap .cardlab { opacity: .7; }
 .nc-src { font-family: var(--font-mono); font-size: .6875rem; color: var(--faint); margin: .8rem 0 0; }
 .nc-tb { width: 100%; border-collapse: collapse; font-family: var(--font-mono);
   font-size: .8125rem; margin-bottom: .85rem; }
@@ -229,7 +229,7 @@ html:lang(en) .kq-qen { display: none; }
 .kw { display: flex; flex-wrap: wrap; gap: .45rem; }
 .kw span { background: var(--navy); color: #fff; padding: .45rem .8rem; border-radius: 9px;
   font-size: 1rem; font-weight: 600; line-height: 1.45; }
-.kw.sm span { font-size: .875rem; padding: .35rem .65rem; }
+.kw.kwsm span { font-size: .875rem; padding: .35rem .65rem; }
 
 .say { margin: 0; padding-left: 0; list-style: none; counter-reset: s; }
 .say li { counter-increment: s; position: relative; padding: .7rem 0 .7rem 2.2rem;
@@ -251,7 +251,7 @@ html:lang(en) .kq-qen { display: none; }
 .ruling { font-size: .9375rem; line-height: 1.72; padding: .85rem 1.05rem .85rem 1.3rem;
   background: var(--violet-wash); border-left: 3px solid var(--violet);
   border-radius: var(--r-sm); color: #3f2a7a; margin: 0; }
-.chk { font-size: .9375rem; line-height: 1.72; padding: .85rem 1.05rem .85rem 1.3rem;
+.confirm { font-size: .9375rem; line-height: 1.72; padding: .85rem 1.05rem .85rem 1.3rem;
   background: var(--blue-wash); border-left: 3px solid var(--blue);
   border-radius: var(--r-sm); color: var(--blue-ink); margin: 0; }
 
